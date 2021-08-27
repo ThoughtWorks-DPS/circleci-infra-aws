@@ -18,21 +18,22 @@ on-tag-main: &on-tag-main
 
 workflows:
   version: 2
-  circleci-infra-image-alpine-pipeline:
+  circleci-infra-aws-alpine-image-pipeline:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: alpine-dev-build
           context: twdps-di
           dockerfile: Dockerfile.alpine
-          image: twdps/circleci-infra-image
+          image: twdps/circleci-infra-aws
           tag: alpine-edge
           docker-cve-scan: true
           snyk-organization: twdps
           cis-docker-image-scan: true
           skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_image_alpine.bats
-          container-name: circleci-infra-image-alpine-edge
+          test-path: test/circleci_infra_aws_alpine.bats
+          container-name: circleci-infra-aws-alpine-edge
+          aws-ecr: true
           after-checkout:
             - run:
                 name: inject environment variables
@@ -40,32 +41,33 @@ workflows:
                   secrethub inject -i secrethub.env -o $BASH_ENV
                   source $BASH_ENV
           filters: *on-push-main
-          
+
       - executor-tools/publish:
           shell: secrethub run -- /bin/sh -eo pipefail
           name: alpine-release
           context: twdps-di
           pull-tag: alpine-edge
           tag-annotation: alpine-
-          image: twdps/circleci-infra-image
+          image: twdps/circleci-infra-aws
           release-tag: alpine-stable
-          filters: *on-tag-main        
+          filters: *on-tag-main
 
-  circleci-infra-image-slim-pipeline:
+  circleci-infra-aws-slim-image-pipeline:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: slim-dev-build
           context: twdps-di
           dockerfile: Dockerfile.slim
-          image: twdps/circleci-infra-imagae
+          image: twdps/circleci-infra-aws
           tag: slim-edge
           docker-cve-scan: true
           snyk-organization: twdps
           cis-docker-image-scan: true
           skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_image_slim.bats
-          container-name: circleci-infra-image-slim-edge
+          test-path: test/circleci_infra_aws_slim.bats
+          container-name: circleci-infra-aws-slim-edge
+          aws-ecr: true
           after-checkout:
             - run:
                 name: inject environment variables
@@ -73,16 +75,16 @@ workflows:
                   secrethub inject -i secrethub.env -o $BASH_ENV
                   source $BASH_ENV
           filters: *on-push-main
-          
+
       - executor-tools/publish:
           shell: secrethub run -- /bin/sh -eo pipefail
           name: slim-release
           context: twdps-di
           pull-tag: slim-edge
           tag-annotation: slim-
-          image: twdps/circleci-infra-image
+          image: twdps/circleci-infra-aws
           release-tag: slim-stable
-          filters: *on-tag-main  
+          filters: *on-tag-main
 
   # builds nightly from .unpinned Dockerfile in order to test the latest base image and installed packages
   circleci-infra-image-nightly-build:
@@ -98,15 +100,15 @@ workflows:
           name: alpine-nightly-build
           context: twdps-di
           dockerfile: Dockerfile.alpine
-          image: twdps/circleci-infra-image
+          image: twdps/circleci-infra-aws
           tag: alpine-nightly
           docker-cve-scan: true
           snyk-organization: twdps
           cis-docker-image-scan: true
           skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_image_alpine.bats
-          container-name: circleci-infra-image-alpine-nightly
+          test-path: test/circleci_infra_aws_alpine.bats
+          container-name: circleci-infra-aws-alpine-nightly
           after-checkout:
             - run:
                 name: inject environment variables
@@ -118,19 +120,18 @@ workflows:
           name: slim-nightly-build
           context: twdps-di
           dockerfile: Dockerfile.slim
-          image: twdps/circleci-infra-image
+          image: twdps/circleci-infra-aws
           tag: slim-nightly
           docker-cve-scan: true
           snyk-organization: twdps
           cis-docker-image-scan: true
           skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_image_slim.bats
-          container-name: circleci-infra-image-slim-nightly
+          test-path: test/circleci_infra_aws_slim.bats
+          container-name: circleci-infra-aws-slim-nightly
           after-checkout:
             - run:
                 name: inject environment variables
                 command: |
                   secrethub inject -i secrethub.env -o $BASH_ENV
                   source $BASH_ENV
-
