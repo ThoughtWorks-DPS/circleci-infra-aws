@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:slim-3.1.0
+FROM twdps/circleci-base-image:slim-stable
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 
@@ -12,7 +12,7 @@ ENV PATH=/home/circleci/.rbenv/bin:$PATH:/usr/local/go/bin:/home/circleci/.cargo
 ENV GOPATH=/home/circleci/.go
 
 # sudo since twdps circleci base images set the USER=cirlceci
-# hadolint ignore=DL3004
+# hadolint ignore=DL3004,DL3013
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  curl \
                  wget \
@@ -36,17 +36,17 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo ln -f -s /usr/bin/python3-config /usr/bin/python-config && \
     pip install --no-cache-dir setuptools==57.4.0 && \
     pip install --no-cache-dir \
-        wheel==0.37.0 \
-        awscli==1.20.30 \
-        invoke==1.6.0 \
-        requests==2.25.1 \
-        jinja2==3.0.1 && \
+        wheel \
+        awscli \
+        invoke \
+        requests \
+        jinja2 && \
     sudo gem install --no-document \
-             awspec:1.24.4 \
-             inspec-bin:4.41.2 \
-             json:2.5.1 && \
+             awspec \
+             inspec-bin \
+             json && \
     sudo npm install -g \
-             bats@1.4.1 && \
+             bats && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sha256sum -c "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
