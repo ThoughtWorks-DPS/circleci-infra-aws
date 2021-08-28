@@ -14,19 +14,19 @@ ENV GOPATH=/home/circleci/.go
 # sudo since twdps circleci base images set the USER=cirlceci
 # hadolint ignore=DL3004
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
-                 curl=7.74.0-1.3+b1 \
-                 wget=1.21-1+b1 \
-                 gnupg=2.2.27-2 \
-                 jq=1.6-2.1 \
-                 bzip2=1.0.8-4 \
-                 unzip=6.0-26 \
-                 ruby-full=1:2.7+2 \
-                 python3-dev=3.9.2-3 \
+                 curl \
+                 wget \
+                 gnupg \
+                 jq \
+                 bzip2 \
+                 unzip \
+                 ruby-full \
+                 python3-dev \
                  python3-pip \
-                 python3-venv=3.9.2-3 \
-                 gcc=4:10.2.1-1 \
-                 g++=4:10.2.1-1 \
-                 make=4.3-4.1 && \
+                 python3-venv \
+                 gcc \
+                 g++ \
+                 make && \
     sudo bash -c "curl -sL https://deb.nodesource.com/setup_14.x | bash - " && \
     sudo apt-get install --no-install-recommends -y \
                  nodejs=14.17.5-deb-1nodesource1 && \
