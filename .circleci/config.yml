@@ -24,6 +24,8 @@ workflows:
           name: alpine-dev-build
           context: twdps-di
           dockerfile: Dockerfile.alpine
+          aws-ecr: true
+          registry: 090950721693.dkr.ecr.us-east-1.amazonaws.com
           image: twdps/circleci-infra-aws
           tag: alpine-edge
           docker-cve-scan: true
@@ -33,7 +35,6 @@ workflows:
           bats-test: true
           test-path: test/circleci_infra_aws_alpine.bats
           container-name: circleci-infra-aws-alpine-edge
-          aws-ecr: true
           after-checkout:
             - run:
                 name: inject environment variables
@@ -50,6 +51,8 @@ workflows:
           tag-annotation: alpine-
           image: twdps/circleci-infra-aws
           release-tag: alpine-stable
+          # aws-ecr: true
+          # registry: 090950721693.dkr.ecr.us-east-1.amazonaws.com
           filters: *on-tag-main
 
   circleci-infra-aws-slim-image-pipeline:
@@ -58,6 +61,8 @@ workflows:
           name: slim-dev-build
           context: twdps-di
           dockerfile: Dockerfile.slim
+          aws-ecr: true
+          registry: 090950721693.dkr.ecr.us-east-1.amazonaws.com
           image: twdps/circleci-infra-aws
           tag: slim-edge
           docker-cve-scan: true
@@ -67,7 +72,6 @@ workflows:
           bats-test: true
           test-path: test/circleci_infra_aws_slim.bats
           container-name: circleci-infra-aws-slim-edge
-          aws-ecr: true
           after-checkout:
             - run:
                 name: inject environment variables
@@ -84,6 +88,8 @@ workflows:
           tag-annotation: slim-
           image: twdps/circleci-infra-aws
           release-tag: slim-stable
+          # aws-ecr: true
+          # registry: 090950721693.dkr.ecr.us-east-1.amazonaws.com
           filters: *on-tag-main
 
   # builds nightly from .unpinned Dockerfile in order to test the latest base image and installed packages
