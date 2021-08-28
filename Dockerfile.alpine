@@ -24,14 +24,14 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
              python3 \
              jq==1.6_rc1-r1 && \
     sudo apk add --no-cache --virtual build-dependencies \
-             build-base==0.5-r2 \
-             openssl-dev==1.1.1l-r0 \
-             python3-dev==3.9.5-r1 \
-             ruby-dev==2.7.4-r0 \
-             libffi-dev==3.3-r2 \
-             g++==10.3.1_git20210424-r2 \
-             gcc==10.3.1_git20210424-r2 \
-             make==4.3-r0 && \
+             build-base \
+             openssl-dev \
+             python3-dev \
+             ruby-dev \
+             libffi-dev \
+             g++ \
+             gcc \
+             make && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
     sudo pip3 install --upgrade pip==21.2.4 && \
