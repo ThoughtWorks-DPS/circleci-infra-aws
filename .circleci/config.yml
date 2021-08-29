@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@dev:latest
+  executor-tools: twdps/executor-tools@0.0.1
 
 on-push-main: &on-push-main
   branches:
