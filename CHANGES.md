@@ -1,3 +1,7 @@
+## 09-03-2021 no version changes in circleci-infra-aws:1.0.1
+
+updated gnupg installation configuration.  
+
 ## 08-26-2021 package versions in circleci-infra-aws:1.0.0
 
 initial release  
