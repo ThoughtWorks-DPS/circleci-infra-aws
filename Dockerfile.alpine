@@ -15,7 +15,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
              curl==7.78.0-r0 \
              wget==1.21.1-r1 \
              gnupg==2.2.27-r0 \
-             nodejs==14.17.5-r0 \
+             nodejs==14.17.6-r0 \
              npm==7.17.0-r0 \
              ruby==2.7.4-r0 \
              ruby-webrick==2.7.4-r0 \
