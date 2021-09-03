@@ -43,11 +43,6 @@
   [[ "${output}" =~ "1.20.30" ]]
 }
 
-@test "npm version" {
-  run bash -c "docker exec circleci-infra-aws-alpine-edge npm --version"
-  [[ "${output}" =~ "7.17.0" ]]
-}
-
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge bats -v"
   [[ "${output}" =~ "1.4.1" ]]

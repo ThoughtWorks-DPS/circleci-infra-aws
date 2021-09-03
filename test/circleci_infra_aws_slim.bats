@@ -48,11 +48,6 @@
   [[ "${output}" =~ "1.20.30" ]]
 }
 
-@test "npm version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge npm -v"
-  [[ "${output}" =~ "6.14.14" ]]
-}
-
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge bats -v"
   [[ "${output}" =~ "1.4.1" ]]
