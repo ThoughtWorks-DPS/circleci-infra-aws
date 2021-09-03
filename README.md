@@ -15,6 +15,7 @@ Tools and packages used in infrastructure pipelines managing AWS.
 Primary packages include:  
 - terraform  
 - python & awscli/boto3  
-- awspec, inspec, bats  
+- awspec, inspec, bats
+- docker  
 
 See CHANGES.md for details and version information.  

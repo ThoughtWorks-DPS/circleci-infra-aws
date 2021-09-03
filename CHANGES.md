@@ -1,4 +1,4 @@
-## 09-03-2021 package versions in circleci-infra-aws:1.0.1
+## 09-03-2021 package versions in circleci-infra-aws:1.1.0
 
 updated gnupg installation configuration.  
 
@@ -11,6 +11,7 @@ FROM twdps/circleci-base-image:alpine-3.1.0
 | curl            | 7.78.0-r0    |
 | wget            | 1.21.1-r1    |
 | gnupg           | 2.2.27-r0    |
+| docker          | 0.10.7-r1^   |
 | jq              | 1.6_rc1-r1   |
 | python3         | 3.9.5-r1     |
 | pip: awscli     | 1.20.30      |
@@ -35,6 +36,7 @@ FROM twdps/circleci-base-image:slim-3.1.0
 | curl            | 7.74.0-1.3+b1             |
 | wget            | 1.21-1+b1                 |
 | gnupg           | 2.2.27-2                  |
+| docker          | 20.10.7^                  |
 | jq              | 1.6-2.1                   |
 | python3         | 3.9.2-3                   |
 | pip: awscli     | 1.20.30                   |

@@ -15,6 +15,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
              curl==7.78.0-r0 \
              wget==1.21.1-r1 \
              gnupg==2.2.27-r0 \
+             docker==20.10.7-r1 \
+             openrc==0.43.3-r1 \
              nodejs==14.17.6-r0 \
              npm==7.17.0-r0 \
              ruby==2.7.4-r0 \
@@ -32,6 +34,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
              g++==10.3.1_git20210424-r2 \
              gcc==10.3.1_git20210424-r2 \
              make==4.3-r0 && \
+    sudo rc-update add docker boot && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
     sudo pip3 install --upgrade pip==21.2.4 && \

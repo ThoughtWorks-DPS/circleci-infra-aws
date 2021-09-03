@@ -20,6 +20,11 @@
   [[ "${output}" =~ "1.21.1" ]]
 }
 
+@test "docker health" {
+  run bash -c "docker exec di-circleci-base-image-alpine-edge docker version"
+  [[ "${output}" =~ "20.10.7" ]]
+}
+
 @test "gpg version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge gpg --version"
   [[ "${output}" =~ "2.2.27" ]]
