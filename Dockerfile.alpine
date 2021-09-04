@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-3.1.0
+FROM twdps/circleci-base-image:alpine-3.1.2
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 

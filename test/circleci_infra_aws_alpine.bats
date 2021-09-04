@@ -21,7 +21,7 @@
 }
 
 @test "docker health" {
-  run bash -c "docker exec di-circleci-base-image-alpine-edge docker version"
+  run bash -c "docker exec circleci-infra-aws-alpine-edge docker version"
   [[ "${output}" =~ "20.10.7" ]]
 }
 
