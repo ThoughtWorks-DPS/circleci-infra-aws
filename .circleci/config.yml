@@ -18,7 +18,7 @@ on-tag-main: &on-tag-main
 
 workflows:
   version: 2
-  circleci-infra-aws-alpine-image-pipeline:
+  alpine-image-pipeline:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: alpine-dev-build
@@ -51,7 +51,7 @@ workflows:
           release-tag: alpine-stable
           filters: *on-tag-main
 
-  circleci-infra-aws-slim-image-pipeline:
+  slim-image-pipeline:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: slim-dev-build
@@ -85,7 +85,7 @@ workflows:
           filters: *on-tag-main
 
   # builds nightly from .unpinned Dockerfile in order to test the latest base image and installed packages
-  circleci-infra-image-nightly-build:
+  circleci-infra-aws-nightly-build:
     triggers:
       - schedule:
           cron: "0 0 1 * *"
