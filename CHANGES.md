@@ -1,4 +1,8 @@
-## 09-03-2021 package versions in circleci-infra-aws:1.1.0
+## 09-04-2021 package versions in circleci-infra-aws:1.0.1
+
+Added dependant package lsb-release. No primary package changes.  
+
+## 09-03-2021 package versions in circleci-infra-aws:1.0.1
 
 updated gnupg installation configuration.  
 
