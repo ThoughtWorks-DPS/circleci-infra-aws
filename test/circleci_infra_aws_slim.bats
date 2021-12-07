@@ -2,17 +2,17 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge terraform version"
-  [[ "${output}" =~ "1.0.7" ]]
+  [[ "${output}" =~ "1.0.11" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.32.1" ]]
+  [[ "${output}" =~ "0.33.1" ]]
 }
 
 @test "curl version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge curl --version"
-  [[ "${output}" =~ "7.74.0" ]]
+  [[ "${output}" =~ "7.79.1" ]]
 }
 
 @test "wget version" {
@@ -22,7 +22,7 @@
 
 @test "docker health" {
   run bash -c "docker exec circleci-infra-aws-slim-edge docker version"
-  [[ "${output}" =~ "20.10.7" ]]
+  [[ "${output}" =~ "20.10.11" ]]
 }
 
 @test "gpg version" {
@@ -37,38 +37,38 @@
 
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge python -V"
-  [[ "${output}" =~ "3.9.7" ]]
+  [[ "${output}" =~ "3.9.8" ]]
 }
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-slim-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.20.43\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.22.21\"}" ]]
   [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.6.0\"}" ]]
   [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.26.0\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.0.1\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.0.3\"}" ]]
 }
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.20.43" ]]
+  [[ "${output}" =~ "1.22.21" ]]
 }
 
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge bats -v"
-  [[ "${output}" =~ "1.4.1" ]]
+  [[ "${output}" =~ "1.5.0" ]]
 }
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge ruby -v"
-  [[ "${output}" =~ "2.7.4" ]]
+  [[ "${output}" =~ "2.7.6" ]]
 }
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge awspec -v"
-  [[ "${output}" =~ "1.25.0" ]]
+  [[ "${output}" =~ "1.25.1" ]]
 }
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge inspec -v"
-  [[ "${output}" =~ "4.41.20" ]]
+  [[ "${output}" =~ "4.50.3" ]]
 }
