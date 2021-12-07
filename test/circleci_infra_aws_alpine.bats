@@ -27,7 +27,7 @@
 
 @test "gpg version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge gpg --version"
-  [[ "${output}" =~ "2.2.27" ]]
+  [[ "${output}" =~ "2.2.31" ]]
 }
 
 @test "python3 version" {
