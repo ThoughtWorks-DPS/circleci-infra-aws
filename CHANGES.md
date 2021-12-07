@@ -1,3 +1,53 @@
+## 12-06-2021 package versions in circleci-infra-aws:1.2.0
+
+FROM twdps/circleci-base-image:alpine-3.1.4^  
+
+| package         | version      |
+|-----------------|--------------|
+| terraform       | 1.0.11^      |
+| tflint          | 0.33.1^      |
+| curl            | 7.80.0-r0^   |
+| wget            | 1.21.2-r2^   |
+| gnupg           | 2.2.31-r1^   |
+| docker          | 20.10.11-r0^ |
+| jq              | 1.6_rc1-r1   |
+| python3         | 3.9.7-r4^    |
+| pip: awscli     | 1.22.21^     |
+| pip: invoke     | 1.6          |
+| pip: requests   | 2.26.0       |
+| pip: jinja2     | 3.0.3^       |
+| nodejs          | 16.13.1-r0^  |
+| npm             | 8.1.3-r0^    |
+| npm: bats       | 1.5.0^       |
+| ruby            | 3.0.3-r0^    |
+| gem: awspec     | 1.25.1^      |
+| gem: inspec     | 4.50.3^      |
+| gem: json       | 2.6.1^       |
+
+
+FROM twdps/circleci-base-image:slim-3.1.4^  
+
+| package         | version                   |
+|-----------------|---------------------------|
+| terraform       | 1.0.11^                   |
+| tflint          | 0.33.1^                   |
+| curl            | 7.79.1-2^                 |
+| wget            | 1.21.2-2+b1^              |
+| gnupg           | 2.2.27-2                  |
+| docker          | 20.10.11^                 |
+| jq              | 1.6-2.1                   |
+| python3         | 3.9.8-1^                  |
+| pip: awscli     | 1.22.21^                  |
+| pip: invoke     | 1.6                       |
+| pip: requests   | 2.26.0                    |
+| pip: jinja2     | 3.0.3^                    |
+| nodejs          | 14.18.2-deb-1nodesource1^ |
+| npm: bats       | 1.5.0^                    |
+| ruby            | 1:2.7.6^                  |
+| gem: awspec     | 1.25.1^                   |
+| gem: inspec     | 4.50.3^                   |
+| gem: json       | 2.6.1^                    |
+
 ## 09-16-2021 package versions in circleci-infra-aws:1.1.0
 
 FROM twdps/circleci-base-image:alpine-3.1.3^  
