@@ -1,10 +1,10 @@
-FROM twdps/circleci-base-image:slim-3.1.4
+FROM twdps/circleci-base-image:slim-3.1.5
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 
-ENV TERRAFORM_VERSION=1.0.11
-ENV TERRAFORM_SHA256SUM=eeb46091a42dc303c3a3c300640c7774ab25cbee5083dafa5fd83b54c8aca664
-ENV TFLINT_VERSION=0.33.1
+ENV TERRAFORM_VERSION=1.1.2
+ENV TERRAFORM_SHA256SUM=734efa82e2d0d3df8f239ce17f7370dabd38e535d21e64d35c73e45f35dfa95c
+ENV TFLINT_VERSION=0.34.0
 ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
@@ -16,7 +16,7 @@ ENV GOPATH=/home/circleci/.go
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  curl=7.79.1-2 \
                  wget=1.21.2-2+b1 \
-                 gnupg=2.2.27-2 \
+                 gnupg=2.2.27-3 \
                  jq=1.6-2.1 \
                  bzip2=1.0.8-5 \
                  unzip=6.0-26 \
@@ -31,8 +31,8 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo bash -c "curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg" && \
     sudo bash -c "echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian bullseye stable\" | tee /etc/apt/sources.list.d/docker.list > /dev/null" && \
     sudo apt-get update && sudo apt-get install --no-install-recommends -y \
-                 docker-ce=5:20.10.11~3-0~debian-bullseye \
-                 docker-ce-cli=5:20.10.11~3-0~debian-bullseye \
+                 docker-ce=5:20.10.12~3-0~debian-bullseye \
+                 docker-ce-cli=5:20.10.12~3-0~debian-bullseye \
                  containerd.io=1.4.12-1 && \
     sudo bash -c "curl -sL https://deb.nodesource.com/setup_14.x | bash - " && \
     sudo apt-get install --no-install-recommends -y \

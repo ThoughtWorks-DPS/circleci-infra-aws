@@ -2,12 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge terraform version"
-  [[ "${output}" =~ "1.0.11" ]]
+  [[ "${output}" =~ "1.1.2" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge tflint --version"
-  [[ "${output}" =~ "0.33.1" ]]
+  [[ "${output}" =~ "0.34.0" ]]
 }
 
 @test "curl version" {
@@ -37,7 +37,7 @@
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.22.21\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.22.24\"}" ]]
   [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.6.0\"}" ]]
   [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.26.0\"}" ]]
   [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.0.3\"}" ]]
@@ -45,7 +45,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge aws --version"
-  [[ "${output}" =~ "1.22.21 " ]]
+  [[ "${output}" =~ "1.22.24 " ]]
 }
 
 @test "bats version" {

@@ -1,3 +1,7 @@
+## 12-19-2021 automated release note generation
+
+CHANGES.md deprecated. See release notes and Dockerfile for specific versions and configuration.  
+
 ## 12-06-2021 package versions in circleci-infra-aws:1.2.0
 
 FROM twdps/circleci-base-image:alpine-3.1.4^  
