@@ -10,8 +10,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
 # sudo since twdps circleci remote docker images set the USER=cirlceci
 # hadolint ignore=DL3004
-RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/apk/repositories" && \
-    sudo apk add --no-cache \
+RUN sudo apk add --no-cache \
              curl==7.80.0-r0 \
              wget==1.21.2-r2 \
              gnupg==2.2.31-r1 \

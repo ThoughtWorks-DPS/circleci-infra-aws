@@ -22,7 +22,7 @@
 
 @test "docker health" {
   run bash -c "docker exec circleci-infra-aws-slim-edge docker version"
-  [[ "${output}" =~ "20.10.11" ]]
+  [[ "${output}" =~ "20.10.12" ]]
 }
 
 @test "gpg version" {
@@ -60,7 +60,7 @@
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge ruby -v"
-  [[ "${output}" =~ "2.7.4" ]]
+  [[ "${output}" =~ "2.7.6" ]]
 }
 
 @test "awspec version" {
