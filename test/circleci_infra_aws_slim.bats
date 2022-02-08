@@ -37,7 +37,7 @@
 
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge python -V"
-  [[ "${output}" =~ "3.9.9" ]]
+  [[ "${output}" =~ "3.9.8" ]]
 }
 
 @test "evaluate installed pip packages and versions" {

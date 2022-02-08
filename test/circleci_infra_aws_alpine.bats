@@ -65,5 +65,5 @@
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge inspec -v"
-  [[ "${output}" =~ "4.59.2" ]]
+  [[ "${output}" =~ "4.52.9" ]]
 }
