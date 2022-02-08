@@ -1,10 +1,10 @@
-FROM twdps/circleci-base-image:slim-3.1.5
+FROM twdps/circleci-base-image:slim-3.2.0
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 
-ENV TERRAFORM_VERSION=1.1.2
-ENV TERRAFORM_SHA256SUM=734efa82e2d0d3df8f239ce17f7370dabd38e535d21e64d35c73e45f35dfa95c
-ENV TFLINT_VERSION=0.34.0
+ENV TERRAFORM_VERSION=1.1.5
+ENV TERRAFORM_SHA256SUM=30942d5055c7151f051c8ea75481ff1dc95b2c4409dbb50196419c21168d6467
+ENV TFLINT_VERSION=0.34.1
 ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
@@ -14,7 +14,7 @@ ENV GOPATH=/home/circleci/.go
 # sudo since twdps circleci base images set the USER=cirlceci
 # hadolint ignore=DL3004
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
-                 curl=7.79.1-2 \
+                 curl=7.81.0-1 \
                  wget=1.21.2-2+b1 \
                  gnupg=2.2.27-3 \
                  jq=1.6-2.1 \
@@ -36,7 +36,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  containerd.io=1.4.12-1 && \
     sudo bash -c "curl -sL https://deb.nodesource.com/setup_14.x | bash - " && \
     sudo apt-get install --no-install-recommends -y \
-                 nodejs=14.18.2-deb-1nodesource1 && \
+                 nodejs=14.19.0-deb-1nodesource1 && \
     sudo ln -f -s /usr/bin/pip3 /usr/bin/pip && \
     sudo ln -f -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo ln -f -s /usr/bin/python3 /usr/bin/python && \
