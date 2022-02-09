@@ -37,7 +37,7 @@
 
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge python -V"
-  [[ "${output}" =~ "3.9.8" ]]
+  [[ "${output}" =~ "3.9.10" ]]
 }
 
 @test "evaluate installed pip packages and versions" {
@@ -50,7 +50,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.22.21" ]]
+  [[ "${output}" =~ "1.22.50" ]]
 }
 
 @test "bats version" {
