@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@0.2.0
+  executor-tools: twdps/executor-tools@dev:latest
 
 on-push-main: &on-push-main
   branches:
@@ -22,7 +22,7 @@ workflows:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: alpine-dev-build
-          context: twdps-di
+          context: twdps-core-labs-team
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-edge
@@ -45,7 +45,7 @@ workflows:
       - executor-tools/publish:
           shell: secrethub run -- /bin/sh -eo pipefail
           name: alpine-release
-          context: twdps-di
+          context: twdps-core-labs-team
           pull-tag: alpine-edge
           tag-annotation: alpine-
           image: twdps/circleci-infra-aws
@@ -56,7 +56,7 @@ workflows:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: slim-dev-build
-          context: twdps-di
+          context: twdps-core-labs-team
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-edge
@@ -79,7 +79,7 @@ workflows:
       - executor-tools/publish:
           shell: secrethub run -- /bin/sh -eo pipefail
           name: slim-release
-          context: twdps-di
+          context: twdps-core-labs-team
           pull-tag: slim-edge
           tag-annotation: slim-
           image: twdps/circleci-infra-aws
@@ -89,8 +89,9 @@ workflows:
   generate-release-notes:
     jobs:
       - executor-tools/release:
-          context: twdps-di
+          context: twdps-core-labs-team
           shell: secrethub run -- /bin/sh -eo pipefail
+          on-tag: true
           filters: *on-tag-main
 
   # builds nightly from .unpinned Dockerfile in order to test the latest base image and installed packages
@@ -105,7 +106,7 @@ workflows:
     jobs:
       - executor-tools/machine-executor-dev-release:
           name: alpine-nightly-build
-          context: twdps-di
+          context: twdps-core-labs-team
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-nightly
@@ -126,7 +127,7 @@ workflows:
 
       - executor-tools/machine-executor-dev-release:
           name: slim-nightly-build
-          context: twdps-di
+          context: twdps-core-labs-team
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-nightly
