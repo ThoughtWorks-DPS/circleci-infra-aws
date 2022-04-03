@@ -32,7 +32,7 @@
 
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge python -V"
-  [[ "${output}" =~ "3.10.0" ]]
+  [[ "${output}" =~ "3.10" ]]
 }
 
 @test "evaluate installed pip packages and versions" {
