@@ -18,6 +18,4 @@ Primary packages include:
 - awspec, inspec, bats  
 - docker  
 
-See CHANGES.md for details and version information.  
-
--
+See Relase Notes for detailed information about changes and updates.  
