@@ -1,9 +1,9 @@
-FROM twdps/circleci-base-image:slim-3.3.0
+FROM twdps/circleci-base-image:slim-3.4.0
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 
-ENV TERRAFORM_VERSION=1.1.7
-ENV TERRAFORM_SHA256SUM=e4add092a54ff6febd3325d1e0c109c9e590dc6c38f8bb7f9632e4e6bcca99d4
+ENV TERRAFORM_VERSION=1.1.9
+ENV TERRAFORM_SHA256SUM=9d2d8a89f5cc8bc1c06cb6f34ce76ec4b99184b07eb776f8b39183b513d7798a
 ENV TFLINT_VERSION=0.35.0
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,8 +15,8 @@ ENV GOPATH=/home/circleci/.go
 # hadolint ignore=DL3004
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  curl=7.82.0-2 \
-                 wget=1.21.3-1 \
-                 gnupg=2.2.27-3 \
+                 wget=1.21.3-1+b1 \
+                 gnupg=2.2.34-1 \
                  jq=1.6-2.1 \
                  bzip2=1.0.8-5 \
                  unzip=6.0-26 \
@@ -40,16 +40,16 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo ln -f -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo ln -f -s /usr/bin/python3 /usr/bin/python && \
     sudo ln -f -s /usr/bin/python3-config /usr/bin/python-config && \
-    pip install --no-cache-dir setuptools==61.3.1 && \
+    pip install --no-cache-dir setuptools==62.1.0 && \
     pip install --no-cache-dir \
         wheel==0.37.0 \
-        awscli==1.22.87 \
+        awscli==1.22.101 \
         invoke==1.7.0 \
         requests==2.27.1 \
         jinja2==3.1.1 && \
     sudo gem install --no-document \
              awspec:1.25.2 \
-             inspec-bin:5.10.5 \
+             inspec-bin:5.14.0 \
              json:2.6.1 && \
     sudo npm install -g \
              bats@1.6.0 && \
