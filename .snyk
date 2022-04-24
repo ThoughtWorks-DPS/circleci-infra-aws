@@ -19,46 +19,46 @@ ignore:
     - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - python3-defaults/python3-dev@3.10.4-1 > python3-defaults/python3@3.10.4-1 > python3.10@3.10.4-3 > python3.10/python3.10-minimal@3.10.4-3:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - python3-defaults/python3-dev@3.10.4-1 > python3-defaults/libpython3-dev@3.10.4-1 > python3.10/libpython3.10-dev@3.10.4-3 > python3.10/libpython3.10-stdlib@3.10.4-3:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - python3-defaults/python3-dev@3.10.4-1 > python3-defaults/python3@3.10.4-1 > python3-defaults/libpython3-stdlib@3.10.4-1 > python3.10/libpython3.10-stdlib@3.10.4-3:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
-    - nodejs@16.14.2-deb-1nodesource1 > python3-defaults/python3-minimal@3.10.4-1 > python3.10/python3.10-minimal@3.10.4-3 > python3.10/libpython3.10-minimal@3.10.4-3:
+    - nodejs@16.14.2-deb-1nodesource1:
       reason: Arbitrary Command Injection
       expires: '2022-06-01T14:26:34.404Z'
 patch: {}
