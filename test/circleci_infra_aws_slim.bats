@@ -50,7 +50,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.22.87" ]]
+  [[ "${output}" =~ "1.22.101" ]]
 }
 
 @test "bats version" {
