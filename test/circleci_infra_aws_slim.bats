@@ -20,11 +20,6 @@
   [[ "${output}" =~ "20.10.16" ]]
 }
 
-@test "gpg version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge gpg --version"
-  [[ "${output}" =~ "2.2.34" ]]
-}
-
 @test "jq version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge jq --version"
   [[ "${output}" =~ "1.6" ]]
