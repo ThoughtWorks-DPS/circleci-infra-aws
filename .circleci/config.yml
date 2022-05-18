@@ -74,7 +74,7 @@ workflows:
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-edge
-          docker-cve-scan: true
+          docker-cve-scan: false
           snyk-organization: twdps
           severity-threshold: medium
           cis-docker-image-scan: true
