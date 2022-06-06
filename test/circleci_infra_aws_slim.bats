@@ -33,7 +33,7 @@
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-slim-edge pip list --format json"
   [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.25.0\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.0\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.1\"}" ]]
   [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.27.1\"}" ]]
   [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1.2\"}" ]]
 }
