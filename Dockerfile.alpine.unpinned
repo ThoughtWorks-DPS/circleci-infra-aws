@@ -2,9 +2,9 @@ FROM twdps/circleci-base-image:alpine-stable
 
 LABEL maintainers=<nic.cheneweth@thoughtworks.com>
 
-ENV TERRAFORM_VERSION=1.1.2
-ENV TERRAFORM_SHA256SUM=734efa82e2d0d3df8f239ce17f7370dabd38e535d21e64d35c73e45f35dfa95c
-ENV TFLINT_VERSION=0.34.0
+ENV TERRAFORM_VERSION=1.2.2
+ENV TERRAFORM_SHA256SUM=2934a0e8824925beb956b2edb5fef212a6141c089d29d8568150a43f95b3a626
+ENV TFLINT_VERSION=0.37.0
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
