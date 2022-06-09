@@ -17,7 +17,7 @@
 
 @test "docker health" {
   run bash -c "docker exec circleci-infra-aws-slim-edge docker version"
-  [[ "${output}" =~ "20.10.16" ]]
+  [[ "${output}" =~ "20.10.17" ]]
 }
 
 @test "jq version" {
@@ -64,6 +64,6 @@
 }
 
 @test "datadog version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge datadog --version"
+  run bash -c "docker exec circleci-infra-aws-slim-edge dog --version"
   [[ "${output}" =~ "0.44.0" ]]
 }
