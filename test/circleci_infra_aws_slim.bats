@@ -62,3 +62,8 @@
   run bash -c "docker exec circleci-infra-aws-slim-edge inspec -v"
   [[ "${output}" =~ "5.17.4" ]]
 }
+
+@test "datadog version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge datadog --version"
+  [[ "${output}" =~ "0.44.0" ]]
+}

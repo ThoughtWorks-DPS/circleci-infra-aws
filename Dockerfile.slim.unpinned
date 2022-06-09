@@ -43,6 +43,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
         awscli \
         invoke \
         requests \
+        datadog \
         jinja2 && \
     sudo gem install --no-document \
              awspec \
