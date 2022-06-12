@@ -11,7 +11,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # sudo since twdps circleci remote docker images set the USER=cirlceci
 # hadolint ignore=DL3004
 RUN sudo apk add --no-cache \
-             gnupg==2.2.35-r2 \
+             gnupg==2.2.35-r3 \
              docker==20.10.16-r0 \
              openrc==0.44.10-r7 \
              nodejs==16.15.0-r1 \
