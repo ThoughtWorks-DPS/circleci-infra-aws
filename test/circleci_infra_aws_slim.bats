@@ -2,12 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge terraform version"
-  [[ "${output}" =~ "1.2.7" ]]
+  [[ "${output}" =~ "1.3.3" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.39.3" ]]
+  [[ "${output}" =~ "0.41.0" ]]
 }
 
 @test "wget version" {
@@ -17,7 +17,7 @@
 
 @test "docker health" {
   run bash -c "docker exec circleci-infra-aws-slim-edge docker version"
-  [[ "${output}" =~ "20.10.17" ]]
+  [[ "${output}" =~ "20.10.20" ]]
 }
 
 @test "jq version" {
@@ -32,20 +32,20 @@
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-slim-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.25.57\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.1\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.25.95\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.3\"}" ]]
   [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.28.1\"}" ]]
   [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1.2\"}" ]]
 }
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.25.57" ]]
+  [[ "${output}" =~ "1.25.95" ]]
 }
 
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge bats -v"
-  [[ "${output}" =~ "1.7.0" ]]
+  [[ "${output}" =~ "1.8.0" ]]
 }
 
 @test "ruby version" {
@@ -55,7 +55,7 @@
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge awspec -v"
-  [[ "${output}" =~ "1.28.0" ]]
+  [[ "${output}" =~ "1.28.1" ]]
 }
 
 @test "inspec version" {
