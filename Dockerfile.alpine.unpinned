@@ -22,7 +22,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
              ruby-bigdecimal \
              ruby-bundler \
              python3 \
-             jq==1.6_rc1-r1 && \
+             jq && \
     sudo apk add --no-cache --virtual build-dependencies \
              build-base \
              openssl-dev \
@@ -37,8 +37,6 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/v3.8/main' >> /etc/
     sudo pip3 install --upgrade pip && \
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
-    sudo ln -s /usr/bin/python3 /usr/bin/python && \
-    sudo ln -s /usr/bin/python3-config /usr/bin/python-config && \
     sudo pip install --no-binary \
              setuptools \
              wheel \
