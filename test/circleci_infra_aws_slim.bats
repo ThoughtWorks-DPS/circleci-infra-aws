@@ -7,7 +7,7 @@
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.41" ]]
+  [[ "${output}" =~ "0.44" ]]
 }
 
 @test "wget version" {
@@ -65,5 +65,5 @@
 
 @test "datadog version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge dog --version"
-  [[ "${output}" =~ "0.44.0" ]]
+  [[ "${output}" =~ "0.44" ]]
 }
