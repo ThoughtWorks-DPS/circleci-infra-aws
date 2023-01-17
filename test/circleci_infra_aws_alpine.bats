@@ -7,7 +7,7 @@
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge tflint --version"
-  [[ "${output}" =~ "0.41.1" ]]
+  [[ "${output}" =~ "0.44.1" ]]
 }
 
 @test "docker health" {
