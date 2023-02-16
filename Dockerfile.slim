@@ -38,8 +38,8 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  docker-ce=5:23.0.1-1~debian.11~bullseye \
                  docker-compose-plugin=2.16.0-1~debian.11~bullseye \
                  nodejs=18.13.0+dfsg1-1 \
-                 npm=9.2.0~ds1-1
- RUN sudo ln -f -s /usr/bin/pip3 /usr/bin/pip && \
+                 npm=9.2.0~ds1-1 && \
+    sudo ln -f -s /usr/bin/pip3 /usr/bin/pip && \
     sudo ln -f -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo ln -f -s /usr/bin/python3 /usr/bin/python && \
     sudo ln -f -s /usr/bin/python3-config /usr/bin/python-config && \
