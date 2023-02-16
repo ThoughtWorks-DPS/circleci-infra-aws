@@ -2,12 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge terraform version"
-  [[ "${output}" =~ "1.3.7" ]]
+  [[ "${output}" =~ "1.3.9" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge tflint --version"
-  [[ "${output}" =~ "0.44.1" ]]
+  [[ "${output}" =~ "0.45" ]]
 }
 
 @test "docker health" {
