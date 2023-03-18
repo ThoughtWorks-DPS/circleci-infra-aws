@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@0.9.0
+  executor-tools: twdps/executor-tools@1.1.0
   op: twdps/onepassword@1.0.0
   do: twdps/pipeline-events@0.1.0
 
@@ -17,6 +17,10 @@ parameters:
     description: shell options for all jobs
     type: string
     default: op run --env-file op.env -- /bin/bash -eo pipefail
+  registry:
+    description: publish to this registry
+    type: string
+    default: ghcr.io/thoughtworks-dps
 
 on-push-main: &on-push-main
   branches:
@@ -39,6 +43,7 @@ workflows:
       - executor-tools/machine-executor-dev-release:
           name: alpine-dev-build
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-edge
@@ -59,10 +64,18 @@ workflows:
           name: alpine-release
           shell: << pipeline.parameters.shell-options >>
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           pull-tag: alpine-edge
           tag-annotation: alpine-
           image: twdps/circleci-infra-aws
           release-tag: alpine-stable
+          sign-image: true
+          after-publish:
+            - run:
+                name: setup cosign keys
+                command: |
+                  op inject -i cosign.key.env -o cosign.key
+                  op inject -i cosign.pub.env -o cosign.pub
           filters: *on-tag-main
 
   slim-image-pipeline:
@@ -70,6 +83,7 @@ workflows:
       - executor-tools/machine-executor-dev-release:
           name: slim-dev-build
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-edge
@@ -90,10 +104,18 @@ workflows:
           name: slim-release
           shell: << pipeline.parameters.shell-options >>
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           pull-tag: slim-edge
           tag-annotation: slim-
           image: twdps/circleci-infra-aws
           release-tag: slim-stable
+          sign-image: true
+          after-publish:
+            - run:
+                name: setup cosign keys
+                command: |
+                  op inject -i cosign.key.env -o cosign.key
+                  op inject -i cosign.pub.env -o cosign.pub
           filters: *on-tag-main
 
   generate-release-notes:
@@ -117,6 +139,7 @@ workflows:
       - executor-tools/machine-executor-dev-release:
           name: alpine-nightly-build
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-nightly
@@ -135,6 +158,7 @@ workflows:
       - executor-tools/machine-executor-dev-release:
           name: slim-nightly-build
           context: << pipeline.parameters.context >>
+          registry: << pipeline.parameters.registry >>
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-nightly
