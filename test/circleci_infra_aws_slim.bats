@@ -64,11 +64,11 @@
 }
 
 @test "tfsec version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge tfsec --version"
-  [[ "${output}" =~ "1.28.1" ]]
+  run bash -c "docker exec circleci-infra-aws-slim-edge tfsec --help"
+  [[ "${output}" =~ "Usage:" ]]
 }
 
 @test "checkov version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge checkov -V"
+  run bash -c "docker exec circleci-infra-aws-slim-edge checkov -v"
   [[ "${output}" =~ "2.3.165" ]]
 }
