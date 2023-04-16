@@ -12,7 +12,7 @@
 
 @test "docker health" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge docker version"
-  [[ "${output}" =~ "20.10.21" ]]
+  [[ "${output}" =~ "20.10.24" ]]
 }
 
 @test "gpg version" {
@@ -22,20 +22,17 @@
 
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge python -V"
-  [[ "${output}" =~ "3.10" ]]
+  [[ "${output}" =~ "3.11" ]]
 }
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.27.94\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.3\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.28.2\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1.2\"}" ]]
+4
 }
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge aws --version"
-  [[ "${output}" =~ "1.27.94" ]]
+  [[ "${output}" =~ "1.27.114" ]]
 }
 
 @test "bats version" {
@@ -45,15 +42,25 @@
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge ruby -v"
-  [[ "${output}" =~ "3.1.3" ]]
+  [[ "${output}" =~ "3.1.4" ]]
 }
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge awspec -v"
-  [[ "${output}" =~ "1.29.0" ]]
+  [[ "${output}" =~ "1.29.2" ]]
 }
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge inspec -v"
   [[ "${output}" =~ "5.21.29" ]]
+}
+
+@test "tfsec version" {
+  run bash -c "docker exec circleci-infra-aws-alpine-edge tfsec --version"
+  [[ "${output}" =~ "1.28.1" ]]
+}
+
+@test "checkov version" {
+  run bash -c "docker exec circleci-infra-aws-alpine-edge checkov -V"
+  [[ "${output}" =~ "2.3.165" ]]
 }

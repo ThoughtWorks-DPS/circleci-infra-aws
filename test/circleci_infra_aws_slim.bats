@@ -32,7 +32,7 @@
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-slim-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.27.94\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.27.114\"}" ]]
   [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.3\"}" ]]
   [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.28.2\"}" ]]
   [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1.2\"}" ]]
@@ -40,7 +40,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.27.94" ]]
+  [[ "${output}" =~ "1.27.114" ]]
 }
 
 @test "bats version" {
@@ -55,10 +55,20 @@
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge awspec -v"
-  [[ "${output}" =~ "1.29.0" ]]
+  [[ "${output}" =~ "1.29.2" ]]
 }
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge inspec -v"
   [[ "${output}" =~ "5.21.29" ]]
+}
+
+@test "tfsec version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge tfsec --version"
+  [[ "${output}" =~ "1.28.1" ]]
+}
+
+@test "checkov version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge checkov -V"
+  [[ "${output}" =~ "2.3.165" ]]
 }
