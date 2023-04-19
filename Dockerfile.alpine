@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-6.0.1
+FROM twdps/circleci-base-image:alpine-6.1.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
