@@ -85,3 +85,4 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
 COPY inspec /etc/chef/accepted_licenses/inspec
 
 USER circleci
+
