@@ -36,7 +36,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              jq==1.6-r2 && \
     sudo apk add --no-cache --virtual build-dependencies \
              build-base==0.5-r3 \
-             openssl-dev==3.1.0-r4 \
+             openssl-dev==3.0.8-r4 \
              python3-dev==3.11.3-r10 \
              ruby-dev==3.1.4-r0 \
              libffi-dev==3.4.4-r0 \
@@ -46,7 +46,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sudo rc-update add docker boot && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
-    sudo pip3 install --upgrade pip==23.1 && \
+    sudo pip3 install --upgrade pip==23.1.1 && \
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo pip install --no-binary \
