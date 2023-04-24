@@ -65,5 +65,5 @@
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge checkov -v"
-  [[ "${output}" =~ "2.3.165" ]]
+  [[ "${output}" =~ "2.3.199" ]]
 }
