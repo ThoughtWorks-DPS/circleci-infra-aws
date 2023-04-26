@@ -78,6 +78,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     chmod +x tfsec-linux-amd64 && \
     sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec && \
     curl -L https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64 -o driftctl && \
+    chmod +x driftctl && \
     sudo mv driftctl /usr/local/bin/driftctl && \
     sudo -u circleci mkdir /home/circleci/.gnupg && \
     sudo -u circleci bash -c "echo 'allow-loopback-pinentry' > /home/circleci/.gnupg/gpg-agent.conf" && \
