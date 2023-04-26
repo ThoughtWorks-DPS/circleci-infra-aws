@@ -13,7 +13,7 @@
 Tools and packages used in infrastructure pipelines managing AWS.  
 
 Primary packages include:  
-- terraform, tflint, tfsec, checkov   
+- terraform, tflint, tfsec, checkov, driftctl   
 - python & awscli/boto3  
 - awspec, inspec, bats  
 - docker  

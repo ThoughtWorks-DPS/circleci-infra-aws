@@ -72,3 +72,8 @@
   run bash -c "docker exec circleci-infra-aws-slim-edge checkov -v"
   [[ "${output}" =~ "2.3.199" ]]
 }
+
+@test "driftctl version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge driftctl version"
+  [[ "${output}" =~ "0.38" ]]
+}

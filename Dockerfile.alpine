@@ -17,6 +17,7 @@ ENV TFLINT_VERSION=0.45.0
 ENV TFSEC_VERSION=1.28.1
 ENV AWSCLI_VERSION=1.27.121
 ENV CHECKOV_VERSION=2.3.199
+ENV DRIFTCTL_VERSION=0.38.2
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
@@ -76,6 +77,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     curl -SLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 && \
     chmod +x tfsec-linux-amd64 && \
     sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec && \
+    curl -L https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64 -o driftctl && \
+    sudo mv driftctl /usr/local/bin/driftctl && \
     sudo -u circleci mkdir /home/circleci/.gnupg && \
     sudo -u circleci bash -c "echo 'allow-loopback-pinentry' > /home/circleci/.gnupg/gpg-agent.conf" && \
     sudo -u circleci bash -c "echo 'pinentry-mode loopback' > /home/circleci/.gnupg/gpg.conf" && \
@@ -85,3 +88,5 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
 COPY inspec /etc/chef/accepted_licenses/inspec
 
 USER circleci
+
+# curl -L https://github.com/snyk/driftctl/releases/latest/download/driftctl_linux_amd64 -o driftctl
