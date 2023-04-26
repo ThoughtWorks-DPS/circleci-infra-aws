@@ -55,7 +55,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              invoke==1.7.3 \
              requests==2.28.2 \
              jinja2==3.1.2 \
-             iam-credential-rotation==0.1.1 \
+             iam-credential-rotation==0.2.2 \
              checkov==${CHECKOV_VERSION} \
              awscli==${AWSCLI_VERSION} && \
     sudo npm install -g \
