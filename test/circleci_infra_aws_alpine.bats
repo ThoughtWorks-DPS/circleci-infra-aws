@@ -74,6 +74,6 @@
 }
 
 @test "gren version" {
-  run bash -c "docker exec circleci-executor-builder-alpine-edge gren --version"
+  run bash -c "docker exec circleci-infra-aws-alpine-edge gren --version"
   [[ "${output}" =~ "0.17.3" ]]
 }
