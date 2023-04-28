@@ -60,6 +60,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              checkov==${CHECKOV_VERSION} \
              awscli==${AWSCLI_VERSION} && \
     sudo npm install -g \
+             github-release-notes@0.17.3 \
              bats@1.9.0 && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \

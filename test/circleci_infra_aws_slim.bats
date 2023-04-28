@@ -77,3 +77,8 @@
   run bash -c "docker exec circleci-infra-aws-slim-edge driftctl version"
   [[ "${output}" =~ "0.38" ]]
 }
+
+@test "gren version" {
+  run bash -c "docker exec circleci-executor-builder-slim-edge gren --version"
+  [[ "${output}" =~ "0.17.3" ]]
+}

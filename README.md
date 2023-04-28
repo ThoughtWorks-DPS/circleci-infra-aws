@@ -16,7 +16,7 @@ Primary packages include:
 - terraform, tflint, tfsec, checkov, driftctl   
 - python & awscli/boto3  
 - awspec, inspec, bats  
-- docker  
+- docker, gren  
 
 See Relase Notes for detailed information about changes and updates.  
 
