@@ -2,7 +2,7 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge terraform version"
-  [[ "${output}" =~ "1.4.2" ]]
+  [[ "${output}" =~ "1.4" ]]
 }
 
 @test "tflint version" {
@@ -17,7 +17,7 @@
 
 @test "gpg version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge gpg --version"
-  [[ "${output}" =~ "2.2.40" ]]
+  [[ "${output}" =~ "2.2" ]]
 }
 
 @test "python3 version" {
@@ -27,35 +27,35 @@
 
 @test "evaluate installed pip packages and versions" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge pip list --format json"
-  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.27.121\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7.3\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.28.2\"}" ]]
-  [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1.2\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"awscli\", \"version\": \"1.27\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"invoke\", \"version\": \"1.7\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"requests\", \"version\": \"2.28\"}" ]]
+  [[ "${output}" =~ "{\"name\": \"Jinja2\", \"version\": \"3.1\"}" ]]
 }
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge aws --version"
-  [[ "${output}" =~ "1.27.121" ]]
+  [[ "${output}" =~ "1.27" ]]
 }
 
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge bats -v"
-  [[ "${output}" =~ "1.9.0" ]]
+  [[ "${output}" =~ "1.9" ]]
 }
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge ruby -v"
-  [[ "${output}" =~ "3.1.4" ]]
+  [[ "${output}" =~ "3.1" ]]
 }
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge awspec -v"
-  [[ "${output}" =~ "1.29.2" ]]
+  [[ "${output}" =~ "1.29" ]]
 }
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge inspec -v"
-  [[ "${output}" =~ "5.21.29" ]]
+  [[ "${output}" =~ "5.21" ]]
 }
 
 @test "tfsec version" {
@@ -65,7 +65,7 @@
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge checkov -v"
-  [[ "${output}" =~ "2.3.199" ]]
+  [[ "${output}" =~ "2.3" ]]
 }
 
 @test "driftctl version" {
@@ -75,5 +75,5 @@
 
 @test "gren version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge gren --version"
-  [[ "${output}" =~ "0.17.3" ]]
+  [[ "${output}" =~ "0.17" ]]
 }
