@@ -7,7 +7,7 @@
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.45" ]]
+  [[ "${output}" =~ "0.46" ]]
 }
 
 @test "wget version" {

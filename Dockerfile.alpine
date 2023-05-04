@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-6.4.0
+FROM twdps/circleci-base-image:alpine-6.5.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -13,9 +13,9 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
 
 ENV TERRAFORM_VERSION=1.4.6
 ENV TERRAFORM_SHA256SUM=e079db1a8945e39b1f8ba4e513946b3ab9f32bd5a2bdf19b9b186d22c5a3d53b
-ENV TFLINT_VERSION=0.45.0
+ENV TFLINT_VERSION=0.46.1
 ENV TFSEC_VERSION=1.28.1
-ENV AWSCLI_VERSION=1.27.121
+ENV AWSCLI_VERSION=1.27.126
 ENV CHECKOV_VERSION=2.3.199
 ENV DRIFTCTL_VERSION=0.38.2
 
