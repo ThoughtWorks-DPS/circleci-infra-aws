@@ -26,7 +26,7 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories" && \
     sudo apk add --no-cache \
              gnupg==2.2.40-r0 \
-             docker==20.10.24-r1 \
+             docker==20.10.24-r2 \
              openrc==0.45.2-r7 \
              nodejs==18.14.2-r0 \
              npm==9.1.2-r0 \
