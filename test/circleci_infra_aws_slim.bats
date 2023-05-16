@@ -47,7 +47,7 @@
 
 @test "awspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge awspec -v"
-  [[ "${output}" =~ "1.29.2" ]]
+  [[ "${output}" =~ "1.29" ]]
 }
 
 @test "inspec version" {

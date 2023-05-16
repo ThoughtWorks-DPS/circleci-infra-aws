@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-6.5.0
+FROM twdps/circleci-base-image:alpine-6.6.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -15,8 +15,8 @@ ENV TERRAFORM_VERSION=1.4.6
 ENV TERRAFORM_SHA256SUM=e079db1a8945e39b1f8ba4e513946b3ab9f32bd5a2bdf19b9b186d22c5a3d53b
 ENV TFLINT_VERSION=0.46.1
 ENV TFSEC_VERSION=1.28.1
-ENV AWSCLI_VERSION=1.27.126
-ENV CHECKOV_VERSION=2.3.199
+ENV AWSCLI_VERSION=1.27.135
+ENV CHECKOV_VERSION=2.3.245
 ENV DRIFTCTL_VERSION=0.38.2
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
@@ -25,25 +25,25 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3004
 RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories" && \
     sudo apk add --no-cache \
-             gnupg==2.2.40-r0 \
-             docker==20.10.24-r2 \
-             openrc==0.45.2-r7 \
-             nodejs==18.14.2-r0 \
-             npm==9.1.2-r0 \
-             ruby==3.1.4-r0 \
-             ruby-webrick==1.7.0-r1 \
-             ruby-bundler==2.3.26-r0 \
-             python3==3.11.3-r10 \
+             gnupg==2.4.1-r1 \
+             docker==23.0.6-r2 \
+             openrc==0.47.1-r0 \
+             nodejs==18.16.0-r1 \
+             npm==9.6.6-r0 \
+             ruby==3.2.2-r0 \
+             ruby-webrick==1.8.1-r0 \
+             ruby-bundler==2.4.12-r0 \
+             python3==3.11.3-r11 \
              jq==1.6-r2 && \
     sudo apk add --no-cache --virtual build-dependencies \
              build-base==0.5-r3 \
-             openssl-dev==3.0.8-r4 \
-             python3-dev==3.11.3-r10 \
-             ruby-dev==3.1.4-r0 \
-             libffi-dev==3.4.4-r0 \
-             g++==12.2.1_git20220924-r4 \
-             gcc==12.2.1_git20220924-r4 \
-             make==4.3-r1 && \
+             openssl-dev==3.1.0-r4 \
+             python3-dev==3.11.3-r11 \
+             ruby-dev==3.2.2-r0 \
+             libffi-dev==3.4.4-r2 \
+             g++==12.2.1_git20220924-r10 \
+             gcc==12.2.1_git20220924-r10 \
+             make==4.4.1-r1 && \
     sudo rc-update add docker boot && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \

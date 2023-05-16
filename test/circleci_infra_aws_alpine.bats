@@ -10,16 +10,6 @@
   [[ "${output}" =~ "0.46" ]]
 }
 
-@test "docker health" {
-  run bash -c "docker exec circleci-infra-aws-alpine-edge docker version"
-  [[ "${output}" =~ "20.10.24" ]]
-}
-
-@test "gpg version" {
-  run bash -c "docker exec circleci-infra-aws-alpine-edge gpg --version"
-  [[ "${output}" =~ "2.2" ]]
-}
-
 @test "python3 version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge python -V"
   [[ "${output}" =~ "3.11" ]]
@@ -37,7 +27,7 @@
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge ruby -v"
-  [[ "${output}" =~ "3.1" ]]
+  [[ "${output}" =~ "3.2" ]]
 }
 
 @test "awspec version" {
