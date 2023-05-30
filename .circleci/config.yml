@@ -2,25 +2,16 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@1.2.0
+  executor-tools: twdps/executor-tools@1.8.0
   op: twdps/onepassword@1.0.0
-  do: twdps/pipeline-events@0.1.0
+  do: twdps/pipeline-events@1.0.0
 
 # ================================================================= global pipeline parameters
 
-parameters:
-  context:
-    description: circleci context for all jobs
-    type: string
-    default: twdps-core-labs-team
-  shell-options:
-    description: shell options for all jobs
-    type: string
-    default: op run --env-file op.env -- /bin/bash -eo pipefail
-  registry:
-    description: publish to this registry
-    type: string
-    default: docker.io
+globals:
+  - &context twdps-core-labs-team
+  - &shell op run --env-file op.env -- /bin/bash -eo pipefail
+  - &registry docker.io
 
 on-push-main: &on-push-main
   branches:
@@ -38,12 +29,13 @@ on-tag-main: &on-tag-main
 
 workflows:
   version: 2
-  alpine-image-pipeline:
+
+  alpine image build:
     jobs:
       - executor-tools/machine-executor-dev-release:
-          name: alpine-dev-build
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
+          name: alpine image build
+          context: *context
+          registry: *registry
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-edge
@@ -66,31 +58,14 @@ workflows:
                   sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.alpine
           filters: *on-push-main
 
-      - executor-tools/publish:
-          name: alpine-release
-          shell: << pipeline.parameters.shell-options >>
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
-          pull-tag: alpine-edge
-          tag-annotation: alpine-
-          image: twdps/circleci-infra-aws
-          release-tag: alpine-stable
-          sign-image: true
-          sbom: true
-          after-publish:
-            - run:
-                name: setup cosign keys
-                command: |
-                  op inject -i cosign.key.env -o cosign.key
-                  op inject -i cosign.pub.env -o cosign.pub
-          filters: *on-tag-main
 
-  slim-image-pipeline:
+
+  slim image build:
     jobs:
       - executor-tools/machine-executor-dev-release:
-          name: slim-dev-build
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
+          name: slim image build
+          context: *context
+          registry: *registry
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-edge
@@ -115,9 +90,9 @@ workflows:
 
       - executor-tools/publish:
           name: slim-release
-          shell: << pipeline.parameters.shell-options >>
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
+          shell: *shell
+          context: *context
+          registry: *registry
           pull-tag: slim-edge
           tag-annotation: slim-
           image: twdps/circleci-infra-aws
@@ -132,71 +107,64 @@ workflows:
                   op inject -i cosign.pub.env -o cosign.pub
           filters: *on-tag-main
 
-  generate-release-notes:
+  release version:
     jobs:
-      - executor-tools/release:
-          shell: << pipeline.parameters.shell-options >>
-          context: << pipeline.parameters.context >>
-          on-tag: true
+
+      - executor-tools/publish:
+          name: alpine release
+          shell: *shell
+          context: *context
+          registry: *registry
+          pull-tag: alpine-edge
+          tag-annotation: alpine-
+          image: twdps/circleci-infra-aws
+          release-tag: alpine-stable
+          sign-image: true
+          sbom: true
+          after-publish:
+            - run:
+                name: setup cosign keys
+                command: |
+                  op inject -i cosign.key.env -o cosign.key
+                  op inject -i cosign.pub.env -o cosign.pub
           filters: *on-tag-main
 
-  # builds nightly from .unpinned Dockerfile in order to test the latest base image and installed packages
-  circleci-infra-aws-nightly-build:
-    triggers:
-      - schedule:
-          cron: "0 0 1 * *"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - executor-tools/machine-executor-dev-release:
-          name: alpine-nightly-build
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
-          dockerfile: Dockerfile.alpine
+      - executor-tools/publish:
+          name: slim release
+          shell: *shell
+          context: *context
+          registry: *registry
+          pull-tag: slim-edge
+          tag-annotation: slim-
           image: twdps/circleci-infra-aws
-          tag: alpine-nightly
-          docker-cve-scan: true
-          snyk-organization: twdps
-          severity-threshold: medium
-          cis-docker-image-scan: true
-          skip-base-image: true
-          bats-test: true
-          test-path: test/circleci_infra_aws_alpine.bats
-          container-name: circleci-infra-aws-alpine-nightly
-          after-checkout:
-            - op/env:
-                env-file: op.env
-          before-build:
+          release-tag: slim-stable
+          sign-image: true
+          sbom: true
+          after-publish:
             - run:
-                name: update CREATED and VERSION in LABELS
+                name: setup cosign keys
                 command: |
-                  sed -i "s/CREATED/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" Dockerfile.alpine
-                  sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.alpine
+                  op inject -i cosign.key.env -o cosign.key
+                  op inject -i cosign.pub.env -o cosign.pub
+          filters: *on-tag-main
 
-      - executor-tools/machine-executor-dev-release:
-          name: slim-nightly-build
-          context: << pipeline.parameters.context >>
-          registry: << pipeline.parameters.registry >>
-          dockerfile: Dockerfile.slim
-          image: twdps/circleci-infra-aws
-          tag: slim-nightly
-          docker-cve-scan: true
-          snyk-organization: twdps
-          severity-threshold: medium
-          cis-docker-image-scan: true
-          skip-base-image: true
-          bats-test: true
-          test-path: test/circleci_infra_aws_slim.bats
-          container-name: circleci-infra-aws-slim-nightly
-          after-checkout:
-            - op/env:
-                env-file: op.env
-          before-build:
-            - run:
-                name: update CREATED and VERSION in LABELS
-                command: |
-                  sed -i "s/CREATED/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" Dockerfile.slim
-                  sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.slim
-  
+  release-events:
+    jobs:
+      - do/schedule-pipeline:
+          name: configure weekly trigger
+          shell: *shell
+          context: *context
+          scheduled-pipeline-name: weekly-ci-build
+          scheduled-pipeline-description: |
+            Automatically trigger image build on a weekly schedule. Failure of
+            this recurring build indicates new releases of dependent packages.
+          hours-of-day: "[1]"
+          days-of-week: "[\"SUN\"]"
+          filters: *on-tag-main
+
+      - do/release:
+          name: generate release notes
+          shell: *shell
+          context: *context
+          on-tag: true
+          filters: *on-tag-main
