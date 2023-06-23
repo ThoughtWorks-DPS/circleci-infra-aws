@@ -67,7 +67,7 @@
 
 @test "driftctl version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge driftctl version"
-  [[ "${output}" =~ "0.38" ]]
+  [[ "${output}" =~ "0.39" ]]
 }
 
 @test "gren version" {
