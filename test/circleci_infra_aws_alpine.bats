@@ -2,12 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge terraform version"
-  [[ "${output}" =~ "1.4" ]]
+  [[ "${output}" =~ "1.5" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge tflint --version"
-  [[ "${output}" =~ "0.46" ]]
+  [[ "${output}" =~ "0.47" ]]
 }
 
 @test "python3 version" {
@@ -52,7 +52,7 @@
 
 @test "driftctl version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge driftctl version"
-  [[ "${output}" =~ "0.38" ]]
+  [[ "${output}" =~ "0.39" ]]
 }
 
 @test "gren version" {

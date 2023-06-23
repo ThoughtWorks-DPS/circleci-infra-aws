@@ -2,12 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge terraform version"
-  [[ "${output}" =~ "1.4" ]]
+  [[ "${output}" =~ "1.5" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.46" ]]
+  [[ "${output}" =~ "0.47" ]]
 }
 
 @test "wget version" {
