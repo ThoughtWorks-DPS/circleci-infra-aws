@@ -59,3 +59,8 @@
   run bash -c "docker exec circleci-infra-aws-alpine-edge gren --version"
   [[ "${output}" =~ "0.17" ]]
 }
+
+@test "snyk version" {
+  run bash -c "docker exec circleci-infra-aws-alpine-edge snyk version"
+  [[ "${output}" =~ "1.1184" ]]
+}
