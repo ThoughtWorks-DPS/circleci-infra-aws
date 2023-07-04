@@ -18,6 +18,7 @@ ENV TFSEC_VERSION=1.28.1
 ENV AWSCLI_VERSION=1.27.160
 ENV CHECKOV_VERSION=2.3.301
 ENV DRIFTCTL_VERSION=0.39.0
+ENV CIRCLECIGEN_VERSION==0.0.9
 ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
@@ -60,7 +61,8 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
              jinja2==3.1.2 \
              iam-credential-rotation==0.2.2 \
              awscli==${AWSCLI_VERSION} \
-             checkov==${CHECKOV_VERSION} && \
+             checkov==${CHECKOV_VERSION} \
+             circlecigen==${CIRCLECIGEN_VERSION} && \
     sudo gem install --no-document \
              awspec:1.29.2 \
              inspec-bin:5.21.29 \
