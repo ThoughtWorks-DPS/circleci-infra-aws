@@ -58,8 +58,6 @@ workflows:
                   sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.alpine
           filters: *on-push-main
 
-
-
   slim image build:
     jobs:
       - executor-tools/machine-executor-dev-release:
@@ -87,25 +85,6 @@ workflows:
                   sed -i "s/CREATED/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" Dockerfile.slim
                   sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.slim
           filters: *on-push-main
-
-      - executor-tools/publish:
-          name: slim-release
-          shell: *shell
-          context: *context
-          registry: *registry
-          pull-tag: slim-edge
-          tag-annotation: slim-
-          image: twdps/circleci-infra-aws
-          release-tag: slim-stable
-          sign-image: true
-          sbom: true
-          after-publish:
-            - run:
-                name: setup cosign keys
-                command: |
-                  op inject -i cosign.key.env -o cosign.key
-                  op inject -i cosign.pub.env -o cosign.pub
-          filters: *on-tag-main
 
   release version:
     jobs:
