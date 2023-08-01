@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-6.7.0
+FROM twdps/circleci-base-image:alpine-6.8.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -11,12 +11,12 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.5.1
-ENV TERRAFORM_SHA256SUM=31754361a9b16564454104bfae8dd40fc6b0c754401c51c58a1023b5e193aa29
+ENV TERRAFORM_VERSION=1.5.4
+ENV TERRAFORM_SHA256SUM=16d9c05137ecf7f427a8cfa14ca9e7c0e73cb339f2c88ee368824ac7b4d077ea
 ENV TFLINT_VERSION=0.47.0
 ENV TFSEC_VERSION=1.28.1
-ENV AWSCLI_VERSION=1.27.160
-ENV CHECKOV_VERSION=2.3.301
+ENV AWSCLI_VERSION=1.29.16
+ENV CHECKOV_VERSION=2.3.349
 ENV DRIFTCTL_VERSION=0.39.0
 ENV CIRCLECIGEN_VERSION==0.0.9
 
@@ -26,10 +26,10 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3004
 RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories" && \
     sudo apk add --no-cache \
-             gnupg==2.4.1-r1 \
-             docker==23.0.6-r2 \
-             openrc==0.47.1-r0 \
-             nodejs==18.16.1-r0 \
+             gnupg==2.4.3-r0 \
+             docker==23.0.6-r3 \
+             openrc==0.48-r0 \
+             nodejs==18.17.0-r0 \
              npm==9.6.6-r0 \
              ruby==3.2.2-r0 \
              ruby-webrick==1.8.1-r0 \
@@ -38,7 +38,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              jq==1.6-r3 && \
     sudo apk add --no-cache --virtual build-dependencies \
              build-base==0.5-r3 \
-             openssl-dev==3.1.1-r1 \
+             openssl-dev==3.1.1-r3 \
              python3-dev==3.11.4-r0 \
              ruby-dev==3.2.2-r0 \
              libffi-dev==3.4.4-r2 \
@@ -48,23 +48,23 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sudo rc-update add docker boot && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
-    sudo pip3 install --upgrade pip==23.1.2 && \
+    sudo pip3 install --upgrade pip==23.2.1 && \
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo pip install --no-binary \
              setuptools==68.0.0 \
-             wheel==0.40.0 \
-             invoke==1.7.3 \
-             requests==2.28.2 \
+             wheel==0.41.0 \
+             invoke==2.2.0 \
+             requests==2.31.0 \
              jinja2==3.1.2 \
              iam-credential-rotation==0.2.2 \
              checkov==${CHECKOV_VERSION} \
              awscli==${AWSCLI_VERSION} \
              circlecigen==${CIRCLECIGEN_VERSION} && \
     sudo npm install -g \
-             snyk@1.1184.0 \
+             snyk@1.1198.0 \
              github-release-notes@0.17.3 \
-             bats@1.9.0 && \
+             bats@1.10.0 && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \
              awspec:1.29.2 \

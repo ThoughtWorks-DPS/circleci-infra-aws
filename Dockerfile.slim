@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:slim-6.7.0
+FROM twdps/circleci-base-image:slim-6.8.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Debian-based CircleCI executor image" \
@@ -11,12 +11,12 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.5.1
-ENV TERRAFORM_SHA256SUM=31754361a9b16564454104bfae8dd40fc6b0c754401c51c58a1023b5e193aa29
+ENV TERRAFORM_VERSION=1.5.4
+ENV TERRAFORM_SHA256SUM=16d9c05137ecf7f427a8cfa14ca9e7c0e73cb339f2c88ee368824ac7b4d077ea
 ENV TFLINT_VERSION=0.47.0
 ENV TFSEC_VERSION=1.28.1
-ENV AWSCLI_VERSION=1.27.160
-ENV CHECKOV_VERSION=2.3.301
+ENV AWSCLI_VERSION=1.29.16
+ENV CHECKOV_VERSION=2.3.349
 ENV DRIFTCTL_VERSION=0.39.0
 ENV CIRCLECIGEN_VERSION==0.0.9
 ENV DEBIAN_FRONTEND=noninteractive
@@ -34,9 +34,9 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  unzip=6.0-28 \
                  gnupg=2.2.40-1.1 \
                  ruby-full=1:3.1 \
-                 python3-dev=3.11.4-1 \
+                 python3-dev=3.11.4-5 \
                  python3-pip \
-                 python3-venv=3.11.4-1 \
+                 python3-venv=3.11.4-5 \
                  lsb-release=12.0-1 \
                  gcc=4:12.3.0-1 \
                  g++=4:12.3.0-1 \
@@ -45,18 +45,18 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo bash -c "curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg" && \
     sudo bash -c "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bullseye stable\" | tee /etc/apt/sources.list.d/docker.list > /dev/null" && sudo apt-get update && \
     sudo apt-get install --no-install-recommends -y \
-                 docker-ce=5:24.0.2-1~debian.11~bullseye \
-                 docker-compose-plugin=2.18.1-1~debian.11~bullseye \
+                 docker-ce=5:24.0.5-1~debian.11~bullseye \
+                 docker-compose-plugin=2.20.2-1~debian.11~bullseye \
                  nodejs=18.13.0+dfsg1-1 \
                  npm=9.2.0~ds1-1 && \
     sudo ln -f -s /usr/bin/pip3 /usr/bin/pip && \
     sudo ln -f -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo ln -f -s /usr/bin/python3 /usr/bin/python && \
     sudo ln -f -s /usr/bin/python3-config /usr/bin/python-config && \
-    sudo pip install --no-cache-dir --break-system-packages setuptools==67.6.0 && \
+    sudo pip install --no-cache-dir --break-system-packages setuptools==68.0.0 && \
     sudo pip install --no-cache-dir --break-system-packages \
-             wheel==0.40.0 \
-             invoke==1.7.3 \
+             wheel==0.41.0 \
+             invoke==2.2.0 \
              requests==2.28.2 \
              jinja2==3.1.2 \
              iam-credential-rotation==0.2.2 \
@@ -68,9 +68,9 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
              inspec-bin:5.21.29 \
              json:2.6.2 && \
     sudo npm install -g \
-             snyk@1.1184.0 \
+             snyk@1.1198.0 \
              github-release-notes@0.17.3 \
-             bats@1.9.0 && \
+             bats@1.10.0 && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sha256sum -c "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \

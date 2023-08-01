@@ -32,12 +32,12 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.27" ]]
+  [[ "${output}" =~ "1.29" ]]
 }
 
 @test "bats version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge bats -v"
-  [[ "${output}" =~ "1.9" ]]
+  [[ "${output}" =~ "1.10" ]]
 }
 
 @test "ruby version" {
@@ -77,5 +77,5 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge snyk version"
-  [[ "${output}" =~ "1.1184" ]]
+  [[ "${output}" =~ "1.1198" ]]
 }
