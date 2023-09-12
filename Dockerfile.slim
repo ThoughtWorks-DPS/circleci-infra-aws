@@ -84,6 +84,10 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     curl -L https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64 -o driftctl && \
     chmod +x driftctl && \
     sudo mv driftctl /usr/local/bin/driftctl && \
+    curl -SLO https://github.com/ThoughtWorks-DPS/circlepipe/releases/download/${CIRCLEPIPE_VERSION}/circlepipe_Linux_amd64.tar.gz && \
+    mkdir ./circlepipe && tar -xzf circlepipe_Linux_amd64.tar.gz -C ./circlepipe && \
+    sudo mv ./circlepipe/circlepipe /usr/local/bin/circlepipe && \
+    sudo rm -rf ./circlepipe circlepipe_Linux_amd64.tar.gz && \
     sudo -u circleci mkdir /home/circleci/.gnupg && \
     sudo -u circleci bash -c "echo 'allow-loopback-pinentry' > /home/circleci/.gnupg/gpg-agent.conf" && \
     sudo -u circleci bash -c "echo 'pinentry-mode loopback' > /home/circleci/.gnupg/gpg.conf" && \
