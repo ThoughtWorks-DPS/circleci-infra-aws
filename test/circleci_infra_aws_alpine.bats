@@ -7,7 +7,7 @@
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge tflint --version"
-  [[ "${output}" =~ "0.47" ]]
+  [[ "${output}" =~ "0.48" ]]
 }
 
 @test "python3 version" {
@@ -37,7 +37,7 @@
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge inspec -v"
-  [[ "${output}" =~ "5.21" ]]
+  [[ "${output}" =~ "5.22" ]]
 }
 
 @test "tfsec version" {
@@ -47,7 +47,7 @@
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge checkov -v"
-  [[ "${output}" =~ "2.3" ]]
+  [[ "${output}" =~ "2.4" ]]
 }
 
 @test "driftctl version" {
@@ -62,5 +62,10 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge snyk version"
-  [[ "${output}" =~ "1.1198" ]]
+  [[ "${output}" =~ "1.1216" ]]
+}
+
+@test "circlepipe version" {
+  run bash -c "docker exec circleci-infra-aws-alpine-edge circlepipe version"
+  [[ "${output}" =~ "0.2" ]]
 }
