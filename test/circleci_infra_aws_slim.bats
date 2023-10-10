@@ -2,7 +2,7 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge terraform version"
-  [[ "${output}" =~ "1.5" ]]
+  [[ "${output}" =~ "1.6" ]]
 }
 
 @test "tflint version" {
@@ -22,7 +22,7 @@
 
 @test "jq version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge jq --version"
-  [[ "${output}" =~ "1.6" ]]
+  [[ "${output}" =~ "1.7" ]]
 }
 
 @test "python3 version" {
@@ -62,7 +62,7 @@
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge checkov -v"
-  [[ "${output}" =~ "2.4" ]]
+  [[ "${output}" =~ "2.5" ]]
 }
 
 @test "driftctl version" {
@@ -77,7 +77,7 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge snyk version"
-  [[ "${output}" =~ "1.1216" ]]
+  [[ "${output}" =~ "1.1233" ]]
 }
 
 @test "circlepipe version" {

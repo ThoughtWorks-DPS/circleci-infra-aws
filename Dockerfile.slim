@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:slim-6.9.0
+FROM twdps/circleci-base-image:slim-6.10.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Debian-based CircleCI executor image" \
@@ -11,12 +11,12 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.5.7
-ENV TERRAFORM_SHA256SUM=c0ed7bc32ee52ae255af9982c8c88a7a4c610485cf1d55feeb037eab75fa082c
+ENV TERRAFORM_VERSION=1.6.1
+ENV TERRAFORM_SHA256SUM=d1a778850cc44d9348312c9527f471ea1b7a9213205bb5091ec698f3dc92e2a6
 ENV TFLINT_VERSION=0.48.0
 ENV TFSEC_VERSION=1.28.4
-ENV AWSCLI_VERSION=1.29.45
-ENV CHECKOV_VERSION=2.4.32
+ENV AWSCLI_VERSION=1.29.62
+ENV CHECKOV_VERSION=2.5.6
 ENV DRIFTCTL_VERSION=0.39.0
 ENV CIRCLEPIPE_VERSION=0.2.0
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,7 +29,7 @@ ENV GOPATH=/home/circleci/.go
 # hadolint ignore=DL3004
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
                  wget=1.21.4-1+b1 \
-                 jq=1.6-3 \
+                 jq=1.7-1 \
                  bzip2=1.0.8-5+b1 \
                  unzip=6.0-28 \
                  gnupg=2.2.40-1.1 \
@@ -53,7 +53,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo ln -f -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo ln -f -s /usr/bin/python3 /usr/bin/python && \
     sudo ln -f -s /usr/bin/python3-config /usr/bin/python-config && \
-    sudo pip install --no-cache-dir --break-system-packages setuptools==68.2.1 && \
+    sudo pip install --no-cache-dir --break-system-packages setuptools==68.2.2 && \
     sudo pip install --no-cache-dir --break-system-packages \
              wheel==0.41.2 \
              invoke==2.2.0 \
@@ -67,7 +67,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
              inspec-bin:5.22.3 \
              json:2.6.2 && \
     sudo npm install -g \
-             snyk@1.1216.0 \
+             snyk@1.1233.0 \
              github-release-notes@0.17.3 \
              bats@1.10.0 && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
