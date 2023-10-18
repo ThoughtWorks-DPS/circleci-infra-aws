@@ -84,3 +84,13 @@
   run bash -c "docker exec circleci-infra-aws-slim-edge circlepipe version"
   [[ "${output}" =~ "0.2" ]]
 }
+
+@test "shasum version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge shasum --version"
+  [[ "${output}" =~ "6." ]]
+}
+
+@test "cosign version" {
+  run bash -c "docker exec circleci-executor-builder-slim-edge cosign version"
+  [[ "${output}" =~ "2.2" ]]
+}
