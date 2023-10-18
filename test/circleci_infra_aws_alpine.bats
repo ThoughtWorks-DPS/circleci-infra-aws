@@ -76,6 +76,6 @@
 }
 
 @test "cosign version" {
-  run bash -c "docker exec circleci-executor-builder-alpine-edge cosign version"
+  run bash -c "docker exec circleci-infra-aws-alpine-edge cosign version"
   [[ "${output}" =~ "2.2" ]]
 }
