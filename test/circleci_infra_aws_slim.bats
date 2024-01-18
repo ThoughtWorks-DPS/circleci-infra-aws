@@ -2,27 +2,12 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge terraform version"
-  [[ "${output}" =~ "1.6" ]]
+  [[ "${output}" =~ "1.7" ]]
 }
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.48" ]]
-}
-
-@test "wget version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge wget --version"
-  [[ "${output}" =~ "1.21" ]]
-}
-
-@test "docker health" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge docker version"
-  [[ "${output}" =~ "23" ]]
-}
-
-@test "jq version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge jq --version"
-  [[ "${output}" =~ "1.7" ]]
+  [[ "${output}" =~ "0.50" ]]
 }
 
 @test "python3 version" {
@@ -52,7 +37,7 @@
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge inspec -v"
-  [[ "${output}" =~ "5.22" ]]
+  [[ "${output}" =~ "6.6" ]]
 }
 
 @test "tfsec version" {
@@ -60,14 +45,19 @@
   [[ "${output}" =~ "Usage:" ]]
 }
 
+@test "trivy version" {
+  run bash -c "docker exec circleci-infra-aws-slim-edge trivy --version"
+  [[ "${output}" =~ "0.48" ]]
+}
+
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge checkov -v"
-  [[ "${output}" =~ "2.5" ]]
+  [[ "${output}" =~ "3.1" ]]
 }
 
 @test "driftctl version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge driftctl version"
-  [[ "${output}" =~ "0.39" ]]
+  [[ "${output}" =~ "0.40" ]]
 }
 
 @test "gren version" {
@@ -77,7 +67,7 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge snyk version"
-  [[ "${output}" =~ "1.1233" ]]
+  [[ "${output}" =~ "1.1270" ]]
 }
 
 @test "circlepipe version" {

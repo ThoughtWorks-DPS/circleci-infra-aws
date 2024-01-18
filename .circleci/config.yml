@@ -2,16 +2,15 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@1.8.0
-  op: twdps/onepassword@1.0.0
-  do: twdps/pipeline-events@1.0.0
+  executor-tools: twdps/executor-tools@2.1.0
+  op: twdps/onepassword@2.0.2
+  do: twdps/pipeline-events@3.2.1
 
 # ================================================================= global pipeline parameters
 
 globals:
-  - &context twdps-core-labs-team
+  - &context empc-lab
   - &shell op run --env-file op.env -- /bin/bash -eo pipefail
-  - &registry docker.io
 
 on-push-main: &on-push-main
   branches:
@@ -25,65 +24,63 @@ on-tag-main: &on-tag-main
   tags:
     only: /.*/
 
+
+commands:
+
+  set-environment:
+    steps:
+      - op/env
+      - op/write:
+          op-value: empc-lab/svc-cosign-private-key/notesPlain
+          out-file: cosign.key
+      - op/write:
+          op-value: empc-lab/svc-cosign-public-key/notesPlain
+          out-file: cosign.pub
+
 # ================================================================= workflows
 
 workflows:
-  version: 2
 
-  alpine image build:
+  alpine build:
     jobs:
-      - executor-tools/machine-executor-dev-release:
+      - executor-tools/dev-release:
           name: alpine image build
           context: *context
-          registry: *registry
+          shell: *shell
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-edge
-          docker-cve-scan: false
+          snyk-scan: true
+          snyk-severity-threshold: medium
           snyk-organization: twdps
-          severity-threshold: medium
-          cis-docker-image-scan: true
-          skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_aws_alpine.bats
-          container-name: circleci-infra-aws-alpine-edge
+          bats-run-container-name: circleci-infra-aws-alpine-edge
+          bats-entry-point: /bin/ash
+          bats-test-path: test/circleci_infra_aws_alpine.bats
+          opencontainer-labels: true
           after-checkout:
-            - op/env:
-                env-file: op.env
-          before-build:
-            - run:
-                name: update CREATED and VERSION in LABELS
-                command: |
-                  sed -i "s/CREATED/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" Dockerfile.alpine
-                  sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.alpine
+            - op/env
           filters: *on-push-main
 
-  slim image build:
+  slim build:
     jobs:
-      - executor-tools/machine-executor-dev-release:
+      - executor-tools/dev-release:
           name: slim image build
           context: *context
-          registry: *registry
+          shell: *shell
           dockerfile: Dockerfile.slim
           image: twdps/circleci-infra-aws
           tag: slim-edge
-          docker-cve-scan: false
+          snyk-scan: true
+          snyk-severity-threshold: medium
           snyk-organization: twdps
-          severity-threshold: medium
-          cis-docker-image-scan: true
-          skip-base-image: true
           bats-test: true
-          test-path: test/circleci_infra_aws_slim.bats
-          container-name: circleci-infra-aws-slim-edge
+          bats-run-container-name: circleci-infra-aws-slim-edge
+          bats-entry-point: /bin/bash
+          bats-test-path: test/circleci_infra_aws_slim.bats
+          opencontainer-labels: true
           after-checkout:
-            - op/env:
-                env-file: op.env
-          before-build:
-            - run:
-                name: update CREATED and VERSION in LABELS
-                command: |
-                  sed -i "s/CREATED/$(date -u +"%Y-%m-%dT%H:%M:%SZ")/g" Dockerfile.slim
-                  sed -i "s/VERSION/${CIRCLE_SHA1}/g" Dockerfile.slim
+            - op/env
           filters: *on-push-main
 
   release version:
@@ -91,43 +88,55 @@ workflows:
 
       - executor-tools/publish:
           name: alpine release
-          shell: *shell
           context: *context
-          registry: *registry
+          shell: *shell
+          image: twdps/circleci-infra-aws
           pull-tag: alpine-edge
           tag-annotation: alpine-
-          image: twdps/circleci-infra-aws
           release-tag: alpine-stable
           sign-image: true
           sbom: true
-          after-publish:
-            - run:
-                name: setup cosign keys
-                command: |
-                  op inject -i cosign.key.env -o cosign.key
-                  op inject -i cosign.pub.env -o cosign.pub
+          after-checkout:
+            - set-environment
           filters: *on-tag-main
 
       - executor-tools/publish:
           name: slim release
-          shell: *shell
           context: *context
-          registry: *registry
+          shell: *shell
+          image: twdps/circleci-infra-aws
           pull-tag: slim-edge
           tag-annotation: slim-
-          image: twdps/circleci-infra-aws
           release-tag: slim-stable
           sign-image: true
           sbom: true
-          after-publish:
-            - run:
-                name: setup cosign keys
-                command: |
-                  op inject -i cosign.key.env -o cosign.key
-                  op inject -i cosign.pub.env -o cosign.pub
+          after-checkout:
+            - set-environment
           filters: *on-tag-main
 
-  release-events:
+      - do/release:
+          name: generate release notes
+          shell: *shell
+          context: *context
+          on-tag: true
+          requires:
+            - alpine release
+            - slim release
+          filters: *on-tag-main
+
+      - do/slack:
+          context: *context
+          channel: lab-events
+          message: "New twdps/circleci-infra-aws release"
+          include-tag: true
+          filters: *on-tag-main
+          before-message:
+            - op/env
+          requires:
+            - alpine release
+            - slim release
+
+  schedule ci build:
     jobs:
       - do/schedule-pipeline:
           name: configure weekly trigger
@@ -139,11 +148,4 @@ workflows:
             this recurring build indicates new releases of dependent packages.
           hours-of-day: "[1]"
           days-of-week: "[\"SUN\"]"
-          filters: *on-tag-main
-
-      - do/release:
-          name: generate release notes
-          shell: *shell
-          context: *context
-          on-tag: true
           filters: *on-tag-main

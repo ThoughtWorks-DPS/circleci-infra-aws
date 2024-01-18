@@ -13,11 +13,11 @@
 Tools and packages used in infrastructure pipelines managing AWS.  
 
 Primary packages include:  
-- terraform, tflint, tfsec, checkov, driftctl   
+- terraform, tflint, tfsec, trivy, checkov, driftctl  
 - python & awscli/boto3  
 - awspec, inspec, bats  
 - docker, gren  
 
 See Relase Notes for detailed information about changes and updates.  
 
-See thet psk [circleci-remote-docker](https://github.com/ThoughtWorks-DPS/circleci-remote-docker) iamge repository for details image signing and sbom verification used by all twdps PSK executor images.  
+See the psk [circleci-remote-docker](https://github.com/ThoughtWorks-DPS/circleci-remote-docker) image repository for details image signing and sbom verification used by all twdps PSK executor images.  
