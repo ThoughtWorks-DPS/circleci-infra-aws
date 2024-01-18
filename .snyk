@@ -2,11 +2,81 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  # SNYK-DEBIANUNSTABLE-SQLITE3-2407040:
-  #   - gnupg2/gnupg@2.2.34-1 > gnupg2/gpg@2.2.34-1 > sqlite3/libsqlite3-0@3.38.2-1:
-  #     reason: Memory Leak
-  #     expires: '2022-06-01T14:26:34.404Z'
-  #   - python3-defaults/python3-dev@3.10.4-1 > python3-defaults/python3@3.10.4-1 > python3.10@3.10.4-3 > python3.10/libpython3.10-stdlib@3.10.4-3 > sqlite3/libsqlite3-0@3.38.2-1:
-  #     reason: Memory Leak
-  #     expires: '2022-06-01T14:26:34.404Z'
+
+  SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPOTELHTTP-5963583:
+    - "*":
+      reason: Allocation of Resources Without Limits or Throttling
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPOTELHTTP-5971109:
+    - "*":
+      reason: Allocation of Resources Without Limits or Throttling
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPHTTPTRACEOTELHTTPTRACE-5971114:
+    - "*":
+      reason: Allocation of Resources Without Limits or Throttling
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXSYSUNIX-3310442:
+    - "*":
+      reason: Incorrect Privilege Assignment
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-3160322:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-5958903:
+    - "*":
+      reason: Allocation of Resources Without Limits or Throttling
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXCRYPTOSSH-2429769:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOPKGINYAMLV3-2841557:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOPKGINYAMLV3-2952714:
+    - "*":
+      reason: Null Pointer Reference
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOOGLEGOLANGORGGRPC-5953328:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2HPACK-3358253:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-2313688:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-3028257:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-3323837:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXNETHTTP2-5953327:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXCRYPTOSSH-3026972:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOOGLEGOLANGORGPROTOBUFENCODINGPROTOJSON-6137908:
+    - "*":
+      reason: Stack-based Buffer Overflow
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GOLANGORGXCRYPTOSSH-6130669:
+    - "*":
+      reason: Authentication Bypass by Capture-replay
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMDVSEKHVALNOVJOSE2GO-6137739:
+    - "*":
+      reason: Uncontrolled Resource Consumption ('Resource Exhaustion')
+      expires: '2024-04-01T14:26:34.404Z'
 patch: {}
