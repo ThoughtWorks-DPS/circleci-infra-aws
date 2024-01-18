@@ -2,7 +2,7 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge terraform version"
-  [[ "${output}" =~ "1.6" ]]
+  [[ "${output}" =~ "1.7" ]]
 }
 
 @test "tflint version" {
@@ -72,7 +72,7 @@
 
 @test "circlepipe version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge circlepipe version"
-  [[ "${output}" =~ "0.2" ]]
+  [[ "${output}" =~ "0.3" ]]
 }
 
 @test "shasum version" {

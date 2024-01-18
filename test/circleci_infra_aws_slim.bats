@@ -17,7 +17,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge aws --version"
-  [[ "${output}" =~ "1.29" ]]
+  [[ "${output}" =~ "1.32" ]]
 }
 
 @test "bats version" {
@@ -72,7 +72,7 @@
 
 @test "circlepipe version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge circlepipe version"
-  [[ "${output}" =~ "0.2" ]]
+  [[ "${output}" =~ "0.3" ]]
 }
 
 @test "shasum version" {
