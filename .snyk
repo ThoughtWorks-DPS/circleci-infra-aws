@@ -2,7 +2,78 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-
+  SNYK-DEBIANUNSTABLE-WGET-1277613:
+    - "*":
+      reason: Open Redirect
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-SYSTEMD-6137711:
+    - "*":
+      reason: CVE-2023-7008
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-RUBY31-5406336:
+    - "*":
+      reason: Inefficient Regular Expression Complexity
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-RUBY31-5406344:
+    - "*":
+      reason: Inefficient Regular Expression Complexity
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-PYTHON311-5430938:
+    - "*":
+      reason: Improper Input Validation
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-LIBXML2-5871336:
+    - "*":
+      reason: Out-of-Bounds
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-LIBXML2-5947662:
+    - "*":
+      reason: Use After Free
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-LIBARCHIVE-5661562:
+    - "*":
+      reason: Race Condition
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-PERL-5489187:
+    - "*":
+      reason: Race Condition
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-OPENSSH-6139208:
+    - "*":
+      reason: CVE-2023-51767
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-DEBIANUNSTABLE-OPENLDAP-5660619:
+    - "*":
+      reason: NULL Pointer Dereference
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-JS-SEMVER-3247795:
+    - "*":
+      reason: Denial of Service (ReDoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-JS-MINIMATCH-3050818:
+    - "*":
+      reason: Denial of Service (ReDoS)
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMGOMARKDOWNMARKDOWNPARSER-5916451:
+    - "*":
+      reason: Out-of-bounds Read
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMDGRIJALVAJWTGO-596515:
+    - "*":
+      reason: Access Restriction Bypass
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMGOGITGOGITV5PLUMBING-6140319:
+    - "*":
+      reason: Uncontrolled Resource Consumption ('Resource Exhaustion')
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMGOGITGOGITV5-6150754:
+    - "*":
+      reason: Path Traversal
+      expires: '2024-04-01T14:26:34.404Z'
+  SNYK-GOLANG-GITHUBCOMELAZARLGOPROXY-5783247:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: '2024-04-01T14:26:34.404Z'
   SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPOTELHTTP-5963583:
     - "*":
       reason: Allocation of Resources Without Limits or Throttling
