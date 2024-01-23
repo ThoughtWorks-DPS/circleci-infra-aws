@@ -24,8 +24,6 @@ ENV COSIGN_VERSION=2.2.2
 ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
-ENV PATH=/home/circleci/.rbenv/bin:$PATH:/usr/local/go/bin:/home/circleci/.cargo/bin
-ENV GOPATH=/home/circleci/.go
 
 # sudo since twdps circleci base images set the USER=cirlceci
 # hadolint ignore=DL3004
@@ -51,7 +49,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
              checkov==${CHECKOV_VERSION} && \
     sudo gem install --no-document \
              awspec:1.29.3 \
-             inspec-bin:6.6.0 \
+             inspec-bin:5.22.36 \
              json:2.7.1 && \
     sudo npm install -g \
              snyk@1.1270.0 \

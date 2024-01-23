@@ -37,7 +37,7 @@
 
 @test "inspec version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge inspec -v"
-  [[ "${output}" =~ "6.6" ]]
+  [[ "${output}" =~ "5.22" ]]
 }
 
 @test "tfsec version" {

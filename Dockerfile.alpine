@@ -60,7 +60,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \
              awspec:1.29.3 \
-             inspec-bin:6.6.0 \
+             inspec-bin:5.22.36 \
              json:2.7.1 && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
