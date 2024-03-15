@@ -2,152 +2,212 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
+  SNYK-DEBIANUNSTABLE-NODEIP-6241031:
+    - "*":
+      reason: Server-Side Request Forgery (SSRF)
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-DEBIANUNSTABLE-LIBXML2-6227806:
+    - "*":
+      reason: Use after free
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-DEBIANUNSTABLE-COREUTILS-6180568:
+    - "*":
+      reason: Out-of-bounds Write
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GOPKGINGOJOSEGOJOSEV2-6419235:
+    - "*":
+      reason: Improper Handling of Highly Compressed Data (Data Amplification)
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GITHUBCOMJACKCPGPROTO3V2-6371508:
+    - "*":
+      reason: SQL injection
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGPLUGIN-6261790:
+    - "*":
+      reason: Use of Uninitialized Resource
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGREPO-6261791:
+    - "*":
+      reason: Use of Uninitialized Resource
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGDOWNLOADER-6247647:
+    - "*":
+      reason: Path Traversal
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGCHARTUTIL-6247646:
+    - "*":
+      reason: Path Traversal
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGCHART-6247645:
+    - "*":
+      reason: Path Traversal
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-HELMSHHELMV3PKGLINTRULES-6247648:
+    - "*":
+      reason: Path Traversal
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERD-6219724:
+    - "*":
+      reason: Container Breakout (Leaky Vessels)
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GITHUBCOMGOJOSEGOJOSEV3-6419233:
+    - "*":
+      reason: Improper Handling of Highly Compressed Data (Data Amplification)
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GOOGLEGOLANGORGPROTOBUFENCODINGPROTOJSON-6393703:
+    - "*":
+      reason: Infinite loop
+      expires: 2024-05-01T14:26:34.404Z
+  SNYK-GOLANG-GOOGLEGOLANGORGPROTOBUFINTERNALENCODINGJSON-6393704:
+    - "*":
+      reason: Infinite loop
+      expires: 2024-05-01T14:26:34.404Z
   SNYK-DEBIANUNSTABLE-WGET-1277613:
     - "*":
       reason: Open Redirect
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-SYSTEMD-6137711:
     - "*":
       reason: CVE-2023-7008
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-RUBY31-5406336:
     - "*":
       reason: Inefficient Regular Expression Complexity
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-RUBY31-5406344:
     - "*":
       reason: Inefficient Regular Expression Complexity
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-PYTHON311-5430938:
     - "*":
       reason: Improper Input Validation
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-LIBXML2-5871336:
     - "*":
       reason: Out-of-Bounds
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-LIBXML2-5947662:
     - "*":
       reason: Use After Free
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-LIBARCHIVE-5661562:
     - "*":
       reason: Race Condition
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-PERL-5489187:
     - "*":
       reason: Race Condition
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-OPENSSH-6139208:
     - "*":
       reason: CVE-2023-51767
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-DEBIANUNSTABLE-OPENLDAP-5660619:
     - "*":
       reason: NULL Pointer Dereference
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-JS-SEMVER-3247795:
     - "*":
       reason: Denial of Service (ReDoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-JS-MINIMATCH-3050818:
     - "*":
       reason: Denial of Service (ReDoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMGOMARKDOWNMARKDOWNPARSER-5916451:
     - "*":
       reason: Out-of-bounds Read
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMDGRIJALVAJWTGO-596515:
     - "*":
       reason: Access Restriction Bypass
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMGOGITGOGITV5PLUMBING-6140319:
     - "*":
       reason: Uncontrolled Resource Consumption ('Resource Exhaustion')
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMGOGITGOGITV5-6150754:
     - "*":
       reason: Path Traversal
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMELAZARLGOPROXY-5783247:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPOTELHTTP-5963583:
     - "*":
       reason: Allocation of Resources Without Limits or Throttling
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPOTELHTTP-5971109:
     - "*":
       reason: Allocation of Resources Without Limits or Throttling
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOOPENTELEMETRYIOCONTRIBINSTRUMENTATIONNETHTTPHTTPTRACEOTELHTTPTRACE-5971114:
     - "*":
       reason: Allocation of Resources Without Limits or Throttling
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXSYSUNIX-3310442:
     - "*":
       reason: Incorrect Privilege Assignment
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-3160322:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-5958903:
     - "*":
       reason: Allocation of Resources Without Limits or Throttling
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXCRYPTOSSH-2429769:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOPKGINYAMLV3-2841557:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOPKGINYAMLV3-2952714:
     - "*":
       reason: Null Pointer Reference
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOOGLEGOLANGORGGRPC-5953328:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2HPACK-3358253:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-2313688:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-3028257:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-3323837:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXNETHTTP2-5953327:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXCRYPTOSSH-3026972:
     - "*":
       reason: Denial of Service (DoS)
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOOGLEGOLANGORGPROTOBUFENCODINGPROTOJSON-6137908:
     - "*":
       reason: Stack-based Buffer Overflow
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GOLANGORGXCRYPTOSSH-6130669:
     - "*":
       reason: Authentication Bypass by Capture-replay
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
   SNYK-GOLANG-GITHUBCOMDVSEKHVALNOVJOSE2GO-6137739:
     - "*":
       reason: Uncontrolled Resource Consumption ('Resource Exhaustion')
-      expires: '2024-04-01T14:26:34.404Z'
+      expires: '2024-05-01T14:26:34.404Z'
 patch: {}
