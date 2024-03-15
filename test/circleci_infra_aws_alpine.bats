@@ -52,7 +52,7 @@
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-alpine-edge checkov -v"
-  [[ "${output}" =~ "3.1" ]]
+  [[ "${output}" =~ "3.2" ]]
 }
 
 @test "driftctl version" {
