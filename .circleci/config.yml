@@ -3,8 +3,8 @@ version: 2.1
 
 orbs:
   executor-tools: twdps/executor-tools@2.1.0
-  op: twdps/onepassword@2.0.2
-  do: twdps/pipeline-events@3.2.1
+  op: twdps/onepassword@2.0.6
+  do: twdps/pipeline-events@3.2.3
 
 # ================================================================= global pipeline parameters
 

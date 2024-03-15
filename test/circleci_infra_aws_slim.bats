@@ -47,7 +47,7 @@
 
 @test "trivy version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge trivy --version"
-  [[ "${output}" =~ "0.48" ]]
+  [[ "${output}" =~ "0.49" ]]
 }
 
 @test "checkov version" {
@@ -67,7 +67,7 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge snyk version"
-  [[ "${output}" =~ "1.1270" ]]
+  [[ "${output}" =~ "1.1284" ]]
 }
 
 @test "circlepipe version" {
