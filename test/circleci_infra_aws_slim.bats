@@ -40,11 +40,6 @@
   [[ "${output}" =~ "5.22" ]]
 }
 
-@test "tfsec version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge tfsec --help"
-  [[ "${output}" =~ "Usage:" ]]
-}
-
 @test "trivy version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge trivy --version"
   [[ "${output}" =~ "0.50" ]]
