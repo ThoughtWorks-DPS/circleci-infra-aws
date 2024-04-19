@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   executor-tools: twdps/executor-tools@2.1.0
   op: twdps/onepassword@2.0.6
-  do: twdps/pipeline-events@3.2.3
+  do: twdps/pipeline-events@3.3.0
 
 # ================================================================= global pipeline parameters
 
@@ -52,6 +52,7 @@ workflows:
           tag: alpine-edge
           snyk-scan: true
           snyk-severity-threshold: medium
+          snyk-skip-base-image: true
           snyk-organization: twdps
           bats-test: true
           bats-run-container-name: circleci-infra-aws-alpine-edge
@@ -73,6 +74,7 @@ workflows:
           tag: slim-edge
           snyk-scan: true
           snyk-severity-threshold: medium
+          snyk-skip-base-image: true
           snyk-organization: twdps
           bats-test: true
           bats-run-container-name: circleci-infra-aws-slim-edge

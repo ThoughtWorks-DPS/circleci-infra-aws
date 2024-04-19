@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-7.1.0
+FROM twdps/circleci-base-image:alpine-7.2.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -11,16 +11,15 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.7.5
-ENV TERRAFORM_SHA256SUM=3ff056b5e8259003f67fd0f0ed7229499cfb0b41f3ff55cc184088589994f7a5
+ENV TERRAFORM_VERSION=1.8.1
+ENV TERRAFORM_SHA256SUM=265d28a1a6dd81bdd5822eba55663613b7a51c582d663f9417f8777905d39002
 ENV TFLINT_VERSION=0.50.3
-ENV TFSEC_VERSION=1.28.5
-ENV TRIVY_VERSION=0.49.1
-ENV AWSCLI_VERSION=1.32.25
-ENV CHECKOV_VERSION=3.2.38
+ENV TRIVY_VERSION=0.50.1
+ENV AWSCLI_VERSION=1.32.88
+ENV CHECKOV_VERSION=3.2.71
 ENV DRIFTCTL_VERSION=0.40.0
 ENV CIRCLEPIPE_VERSION=0.3.2
-ENV COSIGN_VERSION=2.2.3
+ENV COSIGN_VERSION=2.2.4
 
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 
@@ -28,14 +27,14 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3004
 RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories" && \
     sudo apk add --no-cache \
-             nodejs-current==21.4.0-r0 \
+             nodejs-current==21.7.2-r0 \
              npm==10.2.5-r0 \
              ruby==3.2.2-r1 \
              ruby-dev==3.2.2-r1 \
              ruby-webrick==1.8.1-r0 \
              ruby-bundler==2.4.15-r0 \
-             python3==3.11.8-r0 \
-             python3-dev==3.11.8-r0 \
+             python3==3.11.9-r0 \
+             python3-dev==3.11.9-r0 \
              perl-utils==5.38.2-r0 \
              libffi-dev==3.4.4-r3 && \
     sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED && \
@@ -45,8 +44,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo pip install --no-binary \
-             setuptools==69.2.0 \
-             wheel==0.42.0 \
+             setuptools==69.5.1 \
+             wheel==0.43.0 \
              invoke==2.2.0 \
              requests==2.31.0 \
              jinja2==3.1.3 \
@@ -54,14 +53,14 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              checkov==${CHECKOV_VERSION} \
              awscli==${AWSCLI_VERSION} && \
     sudo npm install -g \
-             snyk@1.1284.0 \
+             snyk@1.1290.0 \
              github-release-notes@0.17.3 \
-             bats@1.10.0 && \
+             bats@1.11.0 && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \
-             awspec:1.29.3 \
+             awspec:1.30.0 \
              inspec-bin:5.22.36 \
-             json:2.7.1 && \
+             json:2.7.2 && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sha256sum -cs "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
@@ -70,9 +69,6 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     curl -SLO "https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" > tflint_linux_amd64.zip && \
     sudo unzip tflint_linux_amd64.zip -d /usr/local/bin && \
     sudo rm tflint_linux_amd64.zip && \
-    curl -SLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 && \
-    chmod +x tfsec-linux-amd64 && \
-    sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec && \
     curl -LO https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz && \
     tar xzf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz trivy && \
     sudo mv trivy /usr/local/bin && rm trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz && \
