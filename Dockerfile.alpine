@@ -49,8 +49,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              requests==2.31.0 \
              jinja2==3.1.3 \
              iam-credential-rotation==0.2.2 \
-             checkov==${CHECKOV_VERSION} \
-             awscli==${AWSCLI_VERSION} && \
+             checkov=="${CHECKOV_VERSION}" \
+             awscli=="${AWSCLI_VERSION}" && \
     sudo npm install -g \
              snyk@1.1291.0 \
              github-release-notes@0.17.3 \
@@ -68,17 +68,17 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     curl -SLO "https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" > tflint_linux_amd64.zip && \
     sudo unzip tflint_linux_amd64.zip -d /usr/local/bin && \
     sudo rm tflint_linux_amd64.zip && \
-    curl -LO https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz && \
-    tar xzf trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz trivy && \
-    sudo mv trivy /usr/local/bin && rm trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz && \
-    curl -L https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64 -o driftctl && \
+    curl -LO "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
+    tar xzf "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" trivy && \
+    sudo mv trivy /usr/local/bin && rm "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
+    curl -L "https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64" -o driftctl && \
     chmod +x driftctl && \
     sudo mv driftctl /usr/local/bin/driftctl && \
-    curl -SLO https://github.com/ThoughtWorks-DPS/circlepipe/releases/download/${CIRCLEPIPE_VERSION}/circlepipe_Linux_amd64.tar.gz && \
+    curl -SLO "https://github.com/ThoughtWorks-DPS/circlepipe/releases/download/${CIRCLEPIPE_VERSION}/circlepipe_Linux_amd64.tar.gz" && \
     mkdir ./circlepipe && tar -xzf circlepipe_Linux_amd64.tar.gz -C ./circlepipe && \
     sudo mv ./circlepipe/circlepipe /usr/local/bin/circlepipe && \
     sudo rm -rf ./circlepipe circlepipe_Linux_amd64.tar.gz && \
-    curl -LO https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64 && \
+    curl -LO "https://github.com/sigstore/cosign/releases/download/v${COSIGN_VERSION}/cosign-linux-amd64" && \
     chmod +x cosign-linux-amd64 && sudo mv cosign-linux-amd64 /usr/local/bin/cosign
 
 COPY inspec /etc/chef/accepted_licenses/inspec
