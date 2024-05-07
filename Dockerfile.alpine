@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-7.2.0
+FROM twdps/circleci-base-image:alpine-7.3.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -11,13 +11,12 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.8.1
-ENV TERRAFORM_SHA256SUM=265d28a1a6dd81bdd5822eba55663613b7a51c582d663f9417f8777905d39002
-ENV TFLINT_VERSION=0.50.3
-ENV TRIVY_VERSION=0.50.1
+ENV TERRAFORM_VERSION=1.8.2
+ENV TERRAFORM_SHA256SUM=74f3cc4151e52d94e0ecbe900552adc9b8440b4a8dc12f7fdaab2d0280788acc
+ENV TFLINT_VERSION=0.51.0
+ENV TRIVY_VERSION=0.51.1
 ENV AWSCLI_VERSION=1.32.25
 ENV CHECKOV_VERSION=3.2.71
-ENV DRIFTCTL_VERSION=0.40.0
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.2.4
 
@@ -29,8 +28,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sudo apk add --no-cache \
              nodejs-current==21.7.2-r0 \
              npm==10.2.5-r0 \
-             ruby==3.2.2-r1 \
-             ruby-dev==3.2.2-r1 \
+             ruby==3.2.4-r0 \
+             ruby-dev==3.2.4-r0 \
              ruby-webrick==1.8.1-r0 \
              ruby-bundler==2.4.15-r0 \
              python3==3.11.9-r0 \
@@ -53,7 +52,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              checkov==${CHECKOV_VERSION} \
              awscli==${AWSCLI_VERSION} && \
     sudo npm install -g \
-             snyk@1.1290.0 \
+             snyk@1.1291.0 \
              github-release-notes@0.17.3 \
              bats@1.11.0 && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \

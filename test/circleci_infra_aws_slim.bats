@@ -7,7 +7,7 @@
 
 @test "tflint version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge tflint --version"
-  [[ "${output}" =~ "0.50" ]]
+  [[ "${output}" =~ "0.51" ]]
 }
 
 @test "python3 version" {
@@ -42,17 +42,12 @@
 
 @test "trivy version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge trivy --version"
-  [[ "${output}" =~ "0.50" ]]
+  [[ "${output}" =~ "0.51" ]]
 }
 
 @test "checkov version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge checkov -v"
   [[ "${output}" =~ "3.2" ]]
-}
-
-@test "driftctl version" {
-  run bash -c "docker exec circleci-infra-aws-slim-edge driftctl version"
-  [[ "${output}" =~ "0.40" ]]
 }
 
 @test "gren version" {
@@ -62,7 +57,7 @@
 
 @test "snyk version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge snyk version"
-  [[ "${output}" =~ "1.1290" ]]
+  [[ "${output}" =~ "1.1291" ]]
 }
 
 @test "circlepipe version" {
