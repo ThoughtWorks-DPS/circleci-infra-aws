@@ -27,7 +27,7 @@ SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
 # sudo since twdps circleci base images set the USER=cirlceci
 # hadolint ignore=DL3004
 RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
-                 nodejs=20.13.1+dfsg-1 \
+                 nodejs=20.13.1+dfsg-2 \
                  npm=9.2.0~ds1-2 \
                  ruby-full=1:3.1+nmu1 \
                  python3-dev=3.11.8-1 \
