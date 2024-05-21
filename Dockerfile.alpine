@@ -11,12 +11,15 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.8.2
-ENV TERRAFORM_SHA256SUM=74f3cc4151e52d94e0ecbe900552adc9b8440b4a8dc12f7fdaab2d0280788acc
+ENV TERRAFORM_VERSION=1.8.3
+ENV TERRAFORM_SHA256SUM=4ff78474d0407ba6e8c3fb9ef798f2822326d121e045577f80e2a637ec33f553
 ENV TFLINT_VERSION=0.51.0
 ENV TRIVY_VERSION=0.51.1
+ENV SNYK_VERSION=1.1291.0
+ENV BATS_VERSION=1.11.0
 ENV AWSCLI_VERSION=1.32.25
 ENV CHECKOV_VERSION=3.2.71
+ENV TERRASCAN_VERSION=1.19.1
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.2.4
 
@@ -52,9 +55,9 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              checkov=="${CHECKOV_VERSION}" \
              awscli=="${AWSCLI_VERSION}" && \
     sudo npm install -g \
-             snyk@1.1291.0 \
+             snyk@${SNYK_VERSION} \
              github-release-notes@0.17.3 \
-             bats@1.11.0 && \
+             bats@${BATS_VERSION} && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \
              awspec:1.30.0 \
@@ -65,15 +68,15 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sha256sum -cs "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sudo unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/local/bin && \
     sudo rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
+    curl -SLO "https://github.com/tenable/terrascan/releases/download/v${TERRASCAN_VERSION}/terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
+    sudo tar -xf "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" terrascan && \
+    sudo mv terrascan /usr/local/bin/terrascan && \
     curl -SLO "https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" > tflint_linux_amd64.zip && \
     sudo unzip tflint_linux_amd64.zip -d /usr/local/bin && \
     sudo rm tflint_linux_amd64.zip && \
     curl -LO "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
     tar xzf "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" trivy && \
     sudo mv trivy /usr/local/bin && rm "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
-    curl -L "https://github.com/snyk/driftctl/releases/download/v${DRIFTCTL_VERSION}/driftctl_linux_amd64" -o driftctl && \
-    chmod +x driftctl && \
-    sudo mv driftctl /usr/local/bin/driftctl && \
     curl -SLO "https://github.com/ThoughtWorks-DPS/circlepipe/releases/download/${CIRCLEPIPE_VERSION}/circlepipe_Linux_amd64.tar.gz" && \
     mkdir ./circlepipe && tar -xzf circlepipe_Linux_amd64.tar.gz -C ./circlepipe && \
     sudo mv ./circlepipe/circlepipe /usr/local/bin/circlepipe && \
