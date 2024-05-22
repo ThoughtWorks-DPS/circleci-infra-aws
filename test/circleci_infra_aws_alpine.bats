@@ -74,3 +74,8 @@
   run bash -c "docker exec circleci-infra-aws-alpine-edge cosign version"
   [[ "${output}" =~ "2.2" ]]
 }
+
+@test "kubectl version" {
+  run bash -c "docker exec circleci-infra-aws-alpine-edge kubectl version --client=true"
+  [[ "${output}" =~ "1.30" ]]
+}
