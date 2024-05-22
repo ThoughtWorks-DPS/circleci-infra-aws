@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@3.0.0
+  executor-tools: twdps/executor-tools@3.0.1
   op: twdps/onepassword@3.0.0
   do: twdps/pipeline-events@4.0.0
 
@@ -99,7 +99,6 @@ workflows:
           tag-annotation: slim-
           release-tag: slim-stable
           sign-image: true
-          sbom: true
           after-checkout:
             - set-environment
           filters: *on-tag-main
