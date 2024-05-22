@@ -70,7 +70,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     sudo rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     curl -SLO "https://github.com/tenable/terrascan/releases/download/v${TERRASCAN_VERSION}/terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
     sudo tar -xf "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" terrascan && \
-    sudo mv terrascan /usr/local/bin/terrascan && \
+    sudo mv terrascan /usr/local/bin/terrascan && sudo rm "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
     curl -SLO "https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip" > tflint_linux_amd64.zip && \
     sudo unzip tflint_linux_amd64.zip -d /usr/local/bin && \
     sudo rm tflint_linux_amd64.zip && \
