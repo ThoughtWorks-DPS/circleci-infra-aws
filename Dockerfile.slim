@@ -19,6 +19,7 @@ ENV AWSCLI_VERSION=1.32.25
 ENV CHECKOV_VERSION=3.2.71
 ENV TERRASCAN_VERSION=1.19.1
 ENV KUBECTL_VERSION=1.30.1
+ENV HELM_VERSION=3.15.0
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.2.4
 ENV DEBIAN_FRONTEND=noninteractive
@@ -70,6 +71,11 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     curl -SLO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     sudo chmod +x ./kubectl  && \
     sudo mv ./kubectl /usr/local/bin/kubectl && \
+    curl -SLO "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" && \
+    sudo tar -xf "helm-v${HELM_VERSION}-linux-amd64.tar.gz" && \
+    sudo mv linux-amd64/helm /usr/local/bin && \
+    sudo rm -rf linux-amd64/ && \
+    sudo rm "helm-v${HELM_VERSION}-linux-amd64.tar.gz" && \
     curl -SLO "https://github.com/ThoughtWorks-DPS/circlepipe/releases/download/${CIRCLEPIPE_VERSION}/circlepipe_Linux_amd64.tar.gz" && \
     mkdir ./circlepipe && tar -xzf circlepipe_Linux_amd64.tar.gz -C ./circlepipe && \
     sudo mv ./circlepipe/circlepipe /usr/local/bin/circlepipe && \
