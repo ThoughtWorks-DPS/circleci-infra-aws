@@ -41,7 +41,7 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
              python3-dev==3.12.3-r1 \
              perl-utils==5.38.2-r0 \
              libffi-dev==3.4.6-r0 && \
-    sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED && \
+    sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
     sudo pip3 install --upgrade pip==24.1.1 && \
@@ -68,8 +68,8 @@ RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sha256sum -cs "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
-    sudo unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -d /usr/local/bin && \
-    sudo rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
+    sudo unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && sudo mv terraform /usr/local/bin/terraform && \
+    sudo rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && rm LICENSE.txt && \
     curl -SLO "https://github.com/tenable/terrascan/releases/download/v${TERRASCAN_VERSION}/terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
     sudo tar -xf "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" terrascan && \
     sudo mv terrascan /usr/local/bin/terrascan && sudo rm "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
