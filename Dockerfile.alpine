@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-7.4.0
+FROM twdps/circleci-base-image:alpine-8.1.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -11,17 +11,17 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.8.3
-ENV TERRAFORM_SHA256SUM=4ff78474d0407ba6e8c3fb9ef798f2822326d121e045577f80e2a637ec33f553
-ENV TFLINT_VERSION=0.51.0
-ENV TRIVY_VERSION=0.51.1
-ENV SNYK_VERSION=1.1291.0
-ENV BATS_VERSION=1.11.0
+ENV TERRAFORM_VERSION=1.9.0
+ENV TERRAFORM_SHA256SUM=ab1358e73a81096bbe04201ef403a32e0765c5f6e360692d170d32d0889a4871
+ENV TFLINT_VERSION=0.51.2
+ENV TRIVY_VERSION=0.53.0
 ENV AWSCLI_VERSION=1.32.25
 ENV CHECKOV_VERSION=3.2.71
 ENV TERRASCAN_VERSION=1.19.1
-ENV KUBECTL_VERSION=1.30.1
-ENV HELM_VERSION=3.15.0
+ENV SNYK_VERSION=1.1292.1
+ENV BATS_VERSION=1.11.0
+ENV KUBECTL_VERSION=1.30.2
+ENV HELM_VERSION=3.15.2
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.2.4
 
@@ -31,28 +31,28 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3004
 RUN sudo bash -c "echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories" && \
     sudo apk add --no-cache \
-             nodejs-current==21.7.2-r0 \
-             npm==10.2.5-r0 \
-             ruby==3.2.4-r0 \
-             ruby-dev==3.2.4-r0 \
-             ruby-webrick==1.8.1-r0 \
-             ruby-bundler==2.4.15-r0 \
-             python3==3.11.9-r0 \
-             python3-dev==3.11.9-r0 \
+             nodejs-current==21.7.3-r0 \
+             npm==10.8.0-r0 \
+             ruby==3.3.3-r0 \
+             ruby-dev==3.3.3-r0 \
+             ruby-webrick==1.8.1-r1 \
+             ruby-bundler==2.5.9-r0 \
+             python3==3.12.3-r1 \
+             python3-dev==3.12.3-r1 \
              perl-utils==5.38.2-r0 \
-             libffi-dev==3.4.4-r3 && \
+             libffi-dev==3.4.6-r0 && \
     sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
-    sudo pip3 install --upgrade pip==24.0 && \
+    sudo pip3 install --upgrade pip==24.1.1 && \
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo pip install --no-binary \
-             setuptools==69.5.1 \
+             setuptools==70.2.0 \
              wheel==0.43.0 \
              invoke==2.2.0 \
-             requests==2.31.0 \
-             jinja2==3.1.3 \
+             requests==2.32.3 \
+             jinja2==3.1.4 \
              iam-credential-rotation==0.2.2 \
              checkov=="${CHECKOV_VERSION}" \
              awscli=="${AWSCLI_VERSION}" && \

@@ -4,7 +4,7 @@ version: 2.1
 orbs:
   executor-tools: twdps/executor-tools@3.0.1
   op: twdps/onepassword@3.0.0
-  do: twdps/pipeline-events@4.0.0
+  do: twdps/pipeline-events@4.1.0
 
 globals:
   - &context empc-lab
