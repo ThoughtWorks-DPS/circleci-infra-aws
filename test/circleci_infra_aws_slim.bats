@@ -27,7 +27,7 @@
 
 @test "ruby version" {
   run bash -c "docker exec circleci-infra-aws-slim-edge ruby -v"
-  [[ "${output}" =~ "3.3" ]]
+  [[ "${output}" =~ "3.1" ]]
 }
 
 @test "awspec version" {
