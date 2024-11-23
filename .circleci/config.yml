@@ -55,7 +55,7 @@ workflows:
             - op/env
           filters: *on-push-main
 
-  slim build:
+  ubuntu build:
     jobs:
       - executor-tools/dev-release:
           name: ubuntu image build
@@ -110,7 +110,7 @@ workflows:
           on-tag: true
           requires:
             - alpine release
-            - slim release
+            - ubuntu release
           filters: *on-tag-main
 
       - do/slack:
@@ -123,7 +123,7 @@ workflows:
             - op/env
           requires:
             - alpine release
-            - slim release
+            - ubuntu release
 
   schedule ci build:
     jobs:
