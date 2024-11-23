@@ -58,16 +58,16 @@ workflows:
   slim build:
     jobs:
       - executor-tools/dev-release:
-          name: slim image build
+          name: ubuntu image build
           context: *context
           shell: *shell
-          dockerfile: Dockerfile.slim
+          dockerfile: Dockerfile.ubuntu
           image: twdps/circleci-infra-aws
-          tag: slim-edge
+          tag: ubuntu-edge
           bats-test: true
-          bats-run-container-name: circleci-infra-aws-slim-edge
+          bats-run-container-name: circleci-infra-aws-ubuntu-edge
           bats-entry-point: /bin/bash
-          bats-test-path: test/circleci_infra_aws_slim.bats
+          bats-test-path: test/circleci_infra_aws_ubuntu.bats
           opencontainer-labels: true
           after-checkout:
             - op/env
@@ -91,13 +91,13 @@ workflows:
           filters: *on-tag-main
 
       - executor-tools/publish:
-          name: slim release
+          name: ubuntu release
           context: *context
           shell: *shell
           image: twdps/circleci-infra-aws
-          pull-tag: slim-edge
-          tag-annotation: slim-
-          release-tag: slim-stable
+          pull-tag: ubuntu-edge
+          tag-annotation: ubuntu-
+          release-tag: ubuntu-stable
           sign-image: true
           after-checkout:
             - set-environment
