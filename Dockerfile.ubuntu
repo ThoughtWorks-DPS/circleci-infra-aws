@@ -49,6 +49,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
              checkov=="${CHECKOV_VERSION}" && \
     sudo gem install --no-document \
              awspec:1.30.0 \
+             nokogiri:1.16.7 \
              json:2.8.2 && \
     sudo npm install -g \
              snyk@${SNYK_VERSION} \
