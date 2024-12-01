@@ -78,7 +78,7 @@ RUN sudo apk add --no-cache \
     curl -LO "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
     tar xzf "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" trivy && \
     sudo mv trivy /usr/local/bin && rm "trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz" && \
-    curl -SLO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
+    curl -SLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     sudo chmod +x ./kubectl  && \
     sudo mv ./kubectl /usr/local/bin/kubectl && \
     curl -SLO "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" && \

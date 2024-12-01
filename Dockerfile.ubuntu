@@ -68,7 +68,7 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     curl -SLO "https://github.com/tenable/terrascan/releases/download/v${TERRASCAN_VERSION}/terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
     sudo tar -xf "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" terrascan && \
     sudo mv terrascan /usr/local/bin/terrascan && sudo rm "terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz" && \
-    curl -SLO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
+    curl -SLO "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     sudo chmod +x ./kubectl  && \
     sudo mv ./kubectl /usr/local/bin/kubectl && \
     curl -SLO "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" && \
