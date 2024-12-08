@@ -2,7 +2,41 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-DEBIANUNSTABLE-RUBY31-5406344:
+  SNYK-GOLANG-GITHUBCOMELAZARLGOPROXY-5783247:
     - "*":
-      expires: 2024-06-01T14:26:34.404Z
+      reason: Denial of Service (DoS)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-GOLANG-GOPKGINSRCDGOGITV4-6150755:
+    - "*":
+      reason: Path Traversal
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-GOLANG-K8SIOAPIMACHINERYPKGUTILRUNTIME-8367153:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-GOLANG-GITHUBCOMHASHICORPCONSULAPI-8310965:
+    - "*":
+      reason: Path Traversal
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-JS-ANSIREGEX-1583908:
+    - "*":
+      reason: Regular Expression Denial of Service (ReDoS)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-JS-AXIOS-6032459:
+    - "*":
+      reason: Cross-site Request Forgery (CSRF)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-JS-CROSSSPAWN-8303230:
+    - "*":
+      reason: Regular Expression Denial of Service (ReDoS)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-JS-IP-6240864:
+    - "*":
+      reason: Server-side Request Forgery (SSRF)
+      expires: 2025-06-01T14:26:34.404Z
+  SNYK-JS-SEMVER-3247795:
+    - "*":
+      reason: Regular Expression Denial of Service
+      expires: 2025-06-01T14:26:34.404Z
+
 patch: {}

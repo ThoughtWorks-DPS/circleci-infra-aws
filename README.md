@@ -21,3 +21,5 @@ Primary packages include:
 See Relase Notes for detailed information about changes and updates.  
 
 See the psk [circleci-remote-docker](https://github.com/ThoughtWorks-DPS/circleci-remote-docker) image repository for details image signing and sbom verification used by all twdps PSK executor images.  
+
+_Note. Terraform 1.10 seems to introduce a breaking change when using terraform cloud as `remote` backend. Not certain, but it appears as though Hashi wants app.terraform.io to use the cloud backend directive going foward rather then remote and has made some change based on that assumption that is resulting in recurring errors when attempting to run terraform pan or apply. During the initial fetch-state action it locks the state and then returns an error saying it could not release the lock. It doesn't do this 100% of the time but more often than not. Reverting to 1.9 resolved the problem. The `cloud` backend does not support prefix naming and this results in additional overhead when attempting to maintain DRY tf pipeline patterns. Further investigation is required._
