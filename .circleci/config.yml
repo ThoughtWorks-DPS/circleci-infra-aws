@@ -46,6 +46,10 @@ workflows:
           dockerfile: Dockerfile.alpine
           image: twdps/circleci-infra-aws
           tag: alpine-edge
+          snyk-scan: true
+          snyk-severity-threshold: high
+          snyk-skip-base-image: true
+          snyk-organization: twdps
           bats-test: true
           bats-run-container-name: circleci-infra-aws-alpine-edge
           bats-entry-point: /bin/ash
@@ -64,6 +68,10 @@ workflows:
           dockerfile: Dockerfile.ubuntu
           image: twdps/circleci-infra-aws
           tag: ubuntu-edge
+          snyk-scan: true
+          snyk-severity-threshold: high
+          snyk-skip-base-image: true
+          snyk-organization: twdps
           bats-test: true
           bats-run-container-name: circleci-infra-aws-ubuntu-edge
           bats-entry-point: /bin/bash

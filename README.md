@@ -13,10 +13,10 @@
 Tools and packages used in infrastructure pipelines managing AWS.  
 
 Primary packages include:  
-- terraform, tflint, tfsec, trivy, checkov, driftctl  
+- terraform, tflint, trivy, terrascan, checkov  
 - python & awscli/boto3  
-- awspec, inspec, bats  
-- docker, gren  
+- awspec, bats  
+- docker, kubectl, helm, cosign, circlepipe, gren  
 
 See Relase Notes for detailed information about changes and updates.  
 

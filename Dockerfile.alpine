@@ -1,4 +1,4 @@
-FROM twdps/circleci-base-image:alpine-8.3.0
+FROM twdps/circleci-base-image:alpine-8.4.0
 
 LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.description="Alpine-based CircleCI executor image" \
@@ -11,17 +11,17 @@ LABEL org.opencontainers.image.title="circleci-infra-aws" \
       org.opencontainers.image.created="CREATED" \
       org.opencontainers.image.version="VERSION"
 
-ENV TERRAFORM_VERSION=1.10.0
-ENV TERRAFORM_SHA256SUM=4b05f4848d365597cf7ac5b59334c62a16b3bb7b524586578ee45ba823b6758b
+ENV TERRAFORM_VERSION=1.9.8
+ENV TERRAFORM_SHA256SUM=186e0145f5e5f2eb97cbd785bc78f21bae4ef15119349f6ad4fa535b83b10df8
 ENV TFLINT_VERSION=0.54.0
-ENV TRIVY_VERSION=0.57.1
-ENV AWSCLI_VERSION=1.32.25
-ENV CHECKOV_VERSION=3.2.269
+ENV TRIVY_VERSION=0.58.0
+ENV AWSCLI_VERSION=1.36.17
+ENV CHECKOV_VERSION=3.2.334
 ENV TERRASCAN_VERSION=1.19.9
-ENV SNYK_VERSION=1.1294.0
+ENV SNYK_VERSION=1.1294.2
 ENV BATS_VERSION=1.11.0
 ENV KUBECTL_VERSION=1.31.3
-ENV HELM_VERSION=3.16.2
+ENV HELM_VERSION=3.16.3
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.4.1
 
@@ -30,16 +30,16 @@ SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 # sudo since twdps circleci remote docker images set the USER=cirlceci
 # hadolint ignore=DL3004
 RUN sudo apk add --no-cache \
-             nodejs-current==21.7.3-r0 \
+             nodejs-current==23.2.0-r1 \
              npm==10.9.1-r0 \
              ruby==3.3.6-r0 \
              ruby-dev==3.3.6-r0 \
              ruby-webrick==1.8.1-r1 \
-             ruby-bundler==2.5.9-r0 \
-             ncurses-terminfo-base==6.4_p20240420-r2 \
-             python3==3.12.7-r0 \
-             python3-dev==3.12.7-r0 \
-             perl-utils==5.38.2-r0 \
+             ruby-bundler==2.5.23-r0 \
+             ncurses-terminfo-base==6.5_p20241006-r3 \
+             python3==3.12.8-r1 \
+             python3-dev==3.12.8-r1 \
+             perl-utils==5.40.0-r3 \
              libffi-dev==3.4.6-r0 && \
     sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && \
     sudo python3 -m ensurepip && \

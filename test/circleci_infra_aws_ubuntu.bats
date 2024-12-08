@@ -2,7 +2,7 @@
 
 @test "terraform version" {
   run bash -c "docker exec circleci-infra-aws-ubuntu-edge terraform version"
-  [[ "${output}" =~ "1.10" ]]
+  [[ "${output}" =~ "1.9" ]]
 }
 
 @test "tflint version" {
@@ -17,7 +17,7 @@
 
 @test "awscli version" {
   run bash -c "docker exec circleci-infra-aws-ubuntu-edge aws --version"
-  [[ "${output}" =~ "1.32" ]]
+  [[ "${output}" =~ "1.36" ]]
 }
 
 @test "bats version" {
@@ -37,7 +37,7 @@
 
 @test "trivy version" {
   run bash -c "docker exec circleci-infra-aws-ubuntu-edge trivy --version"
-  [[ "${output}" =~ "0.57" ]]
+  [[ "${output}" =~ "0.58" ]]
 }
 
 @test "checkov version" {
