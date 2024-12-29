@@ -2,6 +2,14 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
+  SNYK-GOLANG-GOLANGORGXNETHTML-8535262:
+    - "*":
+      reason: Denial of Service (DoS)
+      expires: 2025-03-01T14:26:34.404Z
+  SNYK-GOLANG-GOLANGORGXCRYPTOSSH-8496611:
+    - "*":
+      reason: Incorrect Implementation of Authentication Algorithm
+      expires: 2025-03-01T14:26:34.404Z
   SNYK-GOLANG-GITHUBCOMELAZARLGOPROXY-5783247:
     - "*":
       reason: Denial of Service (DoS)
