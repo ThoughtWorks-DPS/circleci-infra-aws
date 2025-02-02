@@ -1,27 +1,28 @@
-FROM twdps/circleci-base-image:ubuntu-8.4.1
+FROM twdps/circleci-base-image:ubuntu-8.5.0
 
-LABEL org.opencontainers.image.title="circleci-infra-aws" \
-      org.opencontainers.image.description="Ubuntu-based CircleCI executor image" \
+LABEL org.opencontainers.image.created="%%CREATED%%" \
+      org.opencontainers.image.authors="nic.cheneweth@thoughtworks.com" \
       org.opencontainers.image.documentation="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
       org.opencontainers.image.source="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
       org.opencontainers.image.url="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
+      org.opencontainers.image.version="%%VERSION%%" \
       org.opencontainers.image.vendor="ThoughtWorks, Inc." \
-      org.opencontainers.image.authors="nic.cheneweth@thoughtworks.com" \
       org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.created="CREATED" \
-      org.opencontainers.image.version="VERSION"
+      org.opencontainers.image.title="circleci-infra-aws" \
+      org.opencontainers.image.description="Ubuntu-based CircleCI executor image for terraform pipelines" \
+      org.opencontainers.image.base.name="%%BASE%%"
 
 ENV TERRAFORM_VERSION=1.9.8
 ENV TERRAFORM_SHA256SUM=186e0145f5e5f2eb97cbd785bc78f21bae4ef15119349f6ad4fa535b83b10df8
-ENV TFLINT_VERSION=0.54.0
-ENV TRIVY_VERSION=0.58.0
-ENV AWSCLI_VERSION=1.36.17
-ENV CHECKOV_VERSION=3.2.334
+ENV TFLINT_VERSION=0.55.1
+ENV TRIVY_VERSION=0.59.0
+ENV AWSCLI_VERSION=1.37.11
+ENV CHECKOV_VERSION=3.2.360
 ENV TERRASCAN_VERSION=1.19.9
-ENV SNYK_VERSION=1.1294.2
-ENV BATS_VERSION=1.11.0
-ENV KUBECTL_VERSION=1.31.3
-ENV HELM_VERSION=3.16.3
+ENV SNYK_VERSION=1.1295.2
+ENV BATS_VERSION=1.11.1
+ENV KUBECTL_VERSION=1.32.1
+ENV HELM_VERSION=3.17.0
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.4.1
 
@@ -43,14 +44,14 @@ RUN sudo apt-get update && sudo apt-get install --no-install-recommends -y \
     sudo pip install --no-cache-dir --break-system-packages --ignore-installed \
              invoke==2.2.0 \
              requests==2.32.3 \
-             jinja2==3.1.4 \
+             jinja2==3.1.5 \
              iam-credential-rotation==0.2.2 \
              awscli=="${AWSCLI_VERSION}" \
              checkov=="${CHECKOV_VERSION}" && \
     sudo gem install --no-document \
-             awspec:1.30.0 \
-             nokogiri:1.16.7 \
-             json:2.8.2 && \
+             awspec:1.32.0 \
+             nokogiri:1.18.2 \
+             json:2.9.1 && \
     sudo npm install -g \
              snyk@${SNYK_VERSION} \
              github-release-notes@0.17.3 \

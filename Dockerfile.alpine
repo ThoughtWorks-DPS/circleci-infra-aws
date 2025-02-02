@@ -1,27 +1,28 @@
-FROM twdps/circleci-base-image:alpine-8.4.1
+FROM twdps/circleci-base-image:alpine-8.5.0
 
-LABEL org.opencontainers.image.title="circleci-infra-aws" \
-      org.opencontainers.image.description="Alpine-based CircleCI executor image" \
+LABEL org.opencontainers.image.created="%%CREATED%%" \
+      org.opencontainers.image.authors="nic.cheneweth@thoughtworks.com" \
       org.opencontainers.image.documentation="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
       org.opencontainers.image.source="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
       org.opencontainers.image.url="https://github.com/ThoughtWorks-DPS/circleci-infra-aws" \
+      org.opencontainers.image.version="%%VERSION%%" \
       org.opencontainers.image.vendor="ThoughtWorks, Inc." \
-      org.opencontainers.image.authors="nic.cheneweth@thoughtworks.com" \
       org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.created="CREATED" \
-      org.opencontainers.image.version="VERSION"
+      org.opencontainers.image.title="circleci-infra-aws" \
+      org.opencontainers.image.description="Alpine-based CircleCI executor image for terraform pipelines" \
+      org.opencontainers.image.base.name="%%BASE%%"
 
 ENV TERRAFORM_VERSION=1.9.8
 ENV TERRAFORM_SHA256SUM=186e0145f5e5f2eb97cbd785bc78f21bae4ef15119349f6ad4fa535b83b10df8
-ENV TFLINT_VERSION=0.54.0
-ENV TRIVY_VERSION=0.58.0
-ENV AWSCLI_VERSION=1.36.17
-ENV CHECKOV_VERSION=3.2.334
+ENV TFLINT_VERSION=0.55.1
+ENV TRIVY_VERSION=0.59.0
+ENV AWSCLI_VERSION=1.37.11
+ENV CHECKOV_VERSION=3.2.360
 ENV TERRASCAN_VERSION=1.19.9
-ENV SNYK_VERSION=1.1294.2
-ENV BATS_VERSION=1.11.0
-ENV KUBECTL_VERSION=1.31.3
-ENV HELM_VERSION=3.16.3
+ENV SNYK_VERSION=1.1295.2
+ENV BATS_VERSION=1.11.1
+ENV KUBECTL_VERSION=1.32.1
+ENV HELM_VERSION=3.17.0
 ENV CIRCLEPIPE_VERSION=0.3.2
 ENV COSIGN_VERSION=2.4.1
 
@@ -39,20 +40,20 @@ RUN sudo apk add --no-cache \
              ncurses-terminfo-base==6.5_p20241006-r3 \
              python3==3.12.8-r1 \
              python3-dev==3.12.8-r1 \
-             perl-utils==5.40.0-r3 \
+             perl-utils==5.40.1-r0 \
              libffi-dev==3.4.6-r0 && \
     sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && \
     sudo python3 -m ensurepip && \
     sudo rm -r /usr/lib/python*/ensurepip && \
-    sudo pip3 install --upgrade pip==24.3.1 && \
+    sudo pip3 install --upgrade pip==25.0 && \
     if [ ! -e /usr/bin/pip ]; then sudo ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
     sudo ln -s /usr/bin/pydoc3 /usr/bin/pydoc && \
     sudo pip install --no-binary \
-             setuptools==75.6.0 \
+             setuptools==75.8.0 \
              wheel==0.45.1 \
              invoke==2.2.0 \
              requests==2.32.3 \
-             jinja2==3.1.4 \
+             jinja2==3.1.5 \
              iam-credential-rotation==0.2.2 \
              checkov=="${CHECKOV_VERSION}" \
              awscli=="${AWSCLI_VERSION}" && \
@@ -62,9 +63,9 @@ RUN sudo apk add --no-cache \
              bats@${BATS_VERSION} && \
     sudo sh -c "echo 'gem: --no-document' > /etc/gemrc" && \
     sudo gem install \
-             awspec:1.30.0 \
-             nokogiri:1.16.7 \
-             json:2.8.2 && \
+             awspec:1.32.0 \
+             nokogiri:1.18.2 \
+             json:2.9.1 && \
     curl -SLO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
     echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
     sha256sum -cs "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && sudo rm "terraform_${TERRAFORM_VERSION}_SHA256SUMS" && \
