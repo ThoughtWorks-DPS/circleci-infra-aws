@@ -2,15 +2,15 @@
 version: 2.1
 
 orbs:
-  executor-tools: twdps/executor-tools@3.0.1
+  executor-tools: twdps/executor-tools@4.0.1
   op: twdps/onepassword@3.0.0
-  do: twdps/pipeline-events@4.1.0
+  do: twdps/pipeline-events@5.0.1
 
 globals:
   - &context empc-lab
   - &shell op run --env-file op.env -- /bin/bash -eo pipefail
 
-on-push-main: &on-push-main
+on-push-main: &on-each-run
   branches:
     only: /main/
   tags:
@@ -37,7 +37,7 @@ commands:
 
 workflows:
 
-  alpine build:
+  build and publish:
     jobs:
       - executor-tools/dev-release:
           name: alpine image build
@@ -55,12 +55,11 @@ workflows:
           bats-entry-point: /bin/ash
           bats-test-path: test/circleci_infra_aws_alpine.bats
           opencontainer-labels: true
+          security-scan-nofail: true
           after-checkout:
             - op/env
-          filters: *on-push-main
+          filters: *on-each-run
 
-  ubuntu build:
-    jobs:
       - executor-tools/dev-release:
           name: ubuntu image build
           context: *context
@@ -77,12 +76,10 @@ workflows:
           bats-entry-point: /bin/bash
           bats-test-path: test/circleci_infra_aws_ubuntu.bats
           opencontainer-labels: true
+          security-scan-nofail: true
           after-checkout:
             - op/env
-          filters: *on-push-main
-
-  release version:
-    jobs:
+          filters: *on-each-run
 
       - executor-tools/publish:
           name: alpine release
@@ -96,6 +93,9 @@ workflows:
           sbom: true
           after-checkout:
             - set-environment
+          requires:
+            - alpine image build
+            - ubuntu image build
           filters: *on-tag-main
 
       - executor-tools/publish:
@@ -109,13 +109,21 @@ workflows:
           sign-image: true
           after-checkout:
             - set-environment
+          requires:
+            - alpine image build
+            - ubuntu image build
           filters: *on-tag-main
 
-      - do/release:
+      - do/gh-release:
           name: generate release notes
           shell: *shell
           context: *context
-          on-tag: true
+          notes-from-file: release.md
+          include-commit-msg: true
+          upload-artifacts: true
+          artifact-folder: workspace
+          before-release:
+            - set-environment
           requires:
             - alpine release
             - ubuntu release
