@@ -10,11 +10,11 @@ globals:
   - &context empc-lab
   - &shell op run --env-file op.env -- /bin/bash -eo pipefail
 
-on-push-main: &on-each-run
+on-each-run: &on-each-run
   branches:
     only: /main/
   tags:
-    ignore: /.*/
+    only: /.*/
 
 on-tag-main: &on-tag-main
   branches:
